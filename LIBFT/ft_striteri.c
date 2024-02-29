@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/02/29 16:46:42 by elsikira         ###   ########.fr       */
+/*   Created: 2023/11/13 11:31:37 by elsikira          #+#    #+#             */
+/*   Updated: 2023/11/13 13:55:35 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+#include "libft.h"
 
-# define FDF_H 
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int	i;
 
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
-
-# include "../LIBFT/libft.h"
-# include "../minilibx-linux/mlx_int.h"
-# include "../minilibx-linux/mlx.h"
-
-#endif
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
+}

@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/02/29 16:46:42 by elsikira         ###   ########.fr       */
+/*   Created: 2023/11/06 15:07:29 by elsikira          #+#    #+#             */
+/*   Updated: 2023/11/15 16:14:07 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+#include "libft.h"
 
-# define FDF_H 
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	size_t	i;
 
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
-
-# include "../LIBFT/libft.h"
-# include "../minilibx-linux/mlx_int.h"
-# include "../minilibx-linux/mlx.h"
-
-#endif
+	i = 0;
+	if (size == 0)
+		return (ft_strlen(src));
+	while (i < size - 1 && src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	while (src[i] != '\0')
+		i++;
+	return (i);
+}

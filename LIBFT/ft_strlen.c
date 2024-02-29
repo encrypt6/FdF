@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/02/29 16:46:42 by elsikira         ###   ########.fr       */
+/*   Created: 2023/11/21 16:30:36 by elsikira          #+#    #+#             */
+/*   Updated: 2023/11/21 16:30:38 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+#include "libft.h"
 
-# define FDF_H 
+size_t	ft_strlen(const char *str)
+{
+	size_t	a;
 
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
-
-# include "../LIBFT/libft.h"
-# include "../minilibx-linux/mlx_int.h"
-# include "../minilibx-linux/mlx.h"
-
-#endif
+	a = 0;
+	while (*(str + a) != '\0')
+	{
+		a++;
+	}
+	return (a);
+}

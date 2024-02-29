@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/02/29 16:46:42 by elsikira         ###   ########.fr       */
+/*   Created: 2023/11/08 15:30:08 by elsikira          #+#    #+#             */
+/*   Updated: 2023/11/15 17:07:52 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+#include "libft.h"
 
-# define FDF_H 
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char		*d;
+	const unsigned char	*s;
 
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
+	if (!dest && !src)
+		return (dest);
+	d = dest;
+	s = src;
+	while (n > 0)
+	{
+		*d++ = *s++;
+		n--;
+	}
+	return (dest);
+}
 
-# include "../LIBFT/libft.h"
-# include "../minilibx-linux/mlx_int.h"
-# include "../minilibx-linux/mlx.h"
-
-#endif
+/* int	main(void)
+{
+	char	*src;
+	char	*dest;
+	
+	src = strdup("Eliza");
+	dest = strdup("Sik");
+	ft_memcpy(dest, src, 3);
+	printf("%s\n", dest);
+} */

@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/02/29 16:46:42 by elsikira         ###   ########.fr       */
+/*   Created: 2023/11/06 15:12:51 by elsikira          #+#    #+#             */
+/*   Updated: 2023/11/15 14:16:22 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	nb;
+	int	sign;
 
-# define FDF_H 
-
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
-
-# include "../LIBFT/libft.h"
-# include "../minilibx-linux/mlx_int.h"
-# include "../minilibx-linux/mlx.h"
-
-#endif
+	i = 0;
+	nb = 0;
+	sign = 1;
+	while ((str[i] <= 13 && str[i] >= 9) || (str[i] == ' '))
+	{
+		i++;
+	}
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+		{
+			sign = (sign * -1);
+		}
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = (nb * 10 + str[i] - '0');
+		i++;
+	}
+	return (nb * sign);
+}

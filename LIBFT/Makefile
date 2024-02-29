@@ -5,39 +5,34 @@
 #                                                     +:+ +:+         +:+      #
 #    By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/17 14:39:19 by elsikira          #+#    #+#              #
-#    Updated: 2024/02/29 17:10:55 by elsikira         ###   ########.fr        #
+#    Created: 2023/11/08 10:11:08 by elsikira          #+#    #+#              #
+#    Updated: 2023/11/27 10:50:32 by elsikira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
-SRCS = srcs/main.c
+NAME = libft.a
+
+SRCS = ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_strncmp.c ft_strdup.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strnstr.c ft_bzero.c ft_memcpy.c ft_memset.c ft_memmove.c ft_memchr.c ft_memcmp.c ft_putchar_fd.c ft_putstr_fd.c ft_putnbr_fd.c ft_putendl_fd.c ft_striteri.c ft_strmapi.c ft_tolower.c ft_toupper.c ft_strchr.c ft_strrchr.c ft_calloc.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c
+
 OBJS = $(SRCS:.c=.o)
-INCLUDES = -I. -ILIBFT -IMINILIBX
-LIBFT = LIBFT/libft.a
-MINILIBX = minilibx-linux/libmlx.a
+
 CC = gcc
+
 RM = rm -f
+
 CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(MINILIBX): minilibx-linux
-	make -C minilibx-linux
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
+	cc -nostartfiles -shared -o libft.so $(OBJS)
 
-$(LIBFT): LIBFT
-	make -C LIBFT
-
-$(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
-
-%.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx-linux -O3 -c $< -o $@
+$(NAME): $(OBJS)
+	ar r $(NAME) $(OBJS)
 
 clean:
 	$(RM) $(OBJS)
-	make fclean -C LIBFT
-	make clean -C minilibx-linux
 
 fclean: clean 
 	$(RM) $(NAME)

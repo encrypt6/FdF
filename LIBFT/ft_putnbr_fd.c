@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/02/29 16:46:42 by elsikira         ###   ########.fr       */
+/*   Created: 2023/11/10 11:27:00 by elsikira          #+#    #+#             */
+/*   Updated: 2023/11/21 11:09:26 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+#include "libft.h"
 
-# define FDF_H 
+void	ft_putnbr_fd(int n, int fd)
+{
+	long	nb;
 
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
-
-# include "../LIBFT/libft.h"
-# include "../minilibx-linux/mlx_int.h"
-# include "../minilibx-linux/mlx.h"
-
-#endif
+	nb = n;
+	if (nb < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nb = -nb;
+	}
+	if (n / 10)
+	{
+		ft_putnbr_fd(nb / 10, fd);
+		ft_putnbr_fd(nb % 10, fd);
+	}
+	else
+		ft_putchar_fd(nb + '0', fd);
+}
