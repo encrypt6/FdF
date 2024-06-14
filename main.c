@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 18:34:45 by elsikira          #+#    #+#             */
-/*   Updated: 2024/02/27 17:36:07 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:23:03 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // 	t_cam	camera;
 // 
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 int	main(void)
 {
