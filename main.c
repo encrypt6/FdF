@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 18:34:45 by elsikira          #+#    #+#             */
-/*   Updated: 2024/06/14 17:23:03 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:32:13 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,18 @@
 // 	t_win	fdf;
 // 	t_cam	camera;
 // 
-
+#define ESC_KEY 65307 // ESC keycode on Linux
 #include "fdf.h"
+
+int	key_hook(int keycode, void *param)
+{
+	(void)param;
+	if (keycode == ESC_KEY)
+	{
+		exit(0);
+	}
+	return (0);
+}
 
 int	main(void)
 {
@@ -28,7 +38,8 @@ int	main(void)
 
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "My first window!");
-	mlx_destroy_window(mlx_ptr, win_ptr);
-	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr);
+	mlx_pixel_put(mlx_ptr, win_ptr, 400, 300, 0xFFFFFF);
+	mlx_key_hook(win_ptr, key_hook, NULL);
+	mlx_loop(mlx_ptr);
+	return (0);
 }
