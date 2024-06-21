@@ -6,12 +6,12 @@
 #    By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 14:39:19 by elsikira          #+#    #+#              #
-#    Updated: 2024/06/14 17:24:23 by elsikira         ###   ########.fr        #
+#    Updated: 2024/06/21 17:41:17 by elsikira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
-SRCS = main.c
+SRCS = main.c key_hook_utils.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = -I. -ILIBFT -IMINILIBX
 LIBFT = Libft/libft.a

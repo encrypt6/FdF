@@ -6,30 +6,11 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 18:34:45 by elsikira          #+#    #+#             */
-/*   Updated: 2024/06/14 19:32:13 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:39:58 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// #include "fdf.h"
-
-// int	main(int argc, char *argv[])
-// {
-// 	t_img	image;
-// 	t_win	fdf;
-// 	t_cam	camera;
-// 
 #define ESC_KEY 65307 // ESC keycode on Linux
 #include "fdf.h"
-
-int	key_hook(int keycode, void *param)
-{
-	(void)param;
-	if (keycode == ESC_KEY)
-	{
-		exit(0);
-	}
-	return (0);
-}
 
 int	main(void)
 {
