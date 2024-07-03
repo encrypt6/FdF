@@ -6,42 +6,67 @@
 #    By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 14:39:19 by elsikira          #+#    #+#              #
-#    Updated: 2024/07/03 12:21:33 by elsikira         ###   ########.fr        #
+#    Updated: 2024/07/03 18:27:02 by elsikira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+RED=\033[0;31m
+GREEN=\033[0;32m
+
 NAME = fdf
-SRCS = main.c key_hook_utils.c
+
+MAIN_SRC = main.c
+
+SRCS = errors_management.c init.c key_hook_utils.c
+
+LIBFT_PATH = libft
+FT_PRINTF_PATH = ft_printf
+MINILIBX_PATH = minilibx-linux
+
 OBJS = $(SRCS:.c=.o)
-INCLUDES = -I. -ILIBFT -IMINILIBX
-LIBFT = Libft/libft.a
-MINILIBX = minilibx-linux/libmlx.a
-CC = gcc
-RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -lm
+MAIN_OBJ = $(MAIN_SRC:.c=.o)
 
-all: $(NAME)
+CC = cc
+RM = rm -rf
 
-$(MINILIBX): minilibx-linux
-	make -C minilibx-linux
+CFLAGS = -Wall -Wextra -Werror -Iinclude -I. -I$(LIBFT_PATH) -I$(FT_PRINTF_PATH) -I$(MINILIBX_PATH)
+all: libft ft_printf minilibx $(NAME)
 
-$(LIBFT): Libft
-	make -C Libft
+$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MAIN_OBJ) -Llibft -lft  -Lft_printf -lftprintf
 
-$(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -o $(NAME)
+$(NAME): $(OBJS) $(MAIN_OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MAIN_OBJ) -L$(LIBFT_PATH) -lft -L$(FT_PRINTF_PATH) -lftprintf -L$(MINILIBX_PATH) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
+	@printf "$(GREEN)Compilation of fdf is complete.\n\033[0m"
+
+libft:
+	$(MAKE) -C $(LIBFT_PATH)
+	@printf "$(GREEN)Compilation of libft is complete.\n\033[0m"
+
+ft_printf:
+	$(MAKE) -C $(FT_PRINTF_PATH)
+	@printf "$(GREEN)Compilation of ft_printf is complete.\n\033[0m"
+
+minilibx:
+	$(MAKE) -C $(MINILIBX_PATH)
+	@printf "$(GREEN)Compilation of minilibx is complete.\n\033[0m"
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx-linux -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
-	make fclean -C Libft
-	make clean -C minilibx-linux
+	$(RM) $(OBJS) $(MAIN_OBJ)
+	$(MAKE) clean -C $(LIBFT_PATH)
+	$(MAKE) clean -C $(FT_PRINTF_PATH)
+	$(MAKE) clean -C $(MINILIBX_PATH)
+	@printf "$(GREEN)All files are cleaned.\n\033[0m"
 
-fclean: clean 
+fclean: clean
 	$(RM) $(NAME)
+	$(MAKE) fclean -C $(LIBFT_PATH)
+	$(MAKE) fclean -C $(FT_PRINTF_PATH)
+	$(MAKE) fclean -C $(MINILIBX_PATH)
+	@printf "$(GREEN)All files are cleaned.\n\033[0m"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft minilibx

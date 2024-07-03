@@ -6,7 +6,7 @@
 #    By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/08 10:11:08 by elsikira          #+#    #+#              #
-#    Updated: 2023/11/27 10:50:32 by elsikira         ###   ########.fr        #
+#    Updated: 2024/07/03 17:59:05 by elsikira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.
 
 OBJS = $(SRCS:.c=.o)
 
-CC = gcc
+CC = cc
 
 RM = rm -f
 
