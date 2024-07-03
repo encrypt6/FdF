@@ -6,7 +6,7 @@
 #    By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 14:39:19 by elsikira          #+#    #+#              #
-#    Updated: 2024/07/03 18:27:02 by elsikira         ###   ########.fr        #
+#    Updated: 2024/07/03 18:28:28 by elsikira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,6 @@ RM = rm -rf
 
 CFLAGS = -Wall -Wextra -Werror -Iinclude -I. -I$(LIBFT_PATH) -I$(FT_PRINTF_PATH) -I$(MINILIBX_PATH)
 all: libft ft_printf minilibx $(NAME)
-
-$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MAIN_OBJ) -Llibft -lft  -Lft_printf -lftprintf
 
 $(NAME): $(OBJS) $(MAIN_OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MAIN_OBJ) -L$(LIBFT_PATH) -lft -L$(FT_PRINTF_PATH) -lftprintf -L$(MINILIBX_PATH) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
