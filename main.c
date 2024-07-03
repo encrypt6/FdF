@@ -6,21 +6,49 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 18:34:45 by elsikira          #+#    #+#             */
-/*   Updated: 2024/06/21 17:39:58 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:36:41 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#define ESC_KEY 65307 // ESC keycode on Linux
+
 #include "fdf.h"
 
-int	main(void)
+int	check_map(char **argv)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	if ()
+}
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "My first window!");
-	mlx_pixel_put(mlx_ptr, win_ptr, 400, 300, 0xFFFFFF);
-	mlx_key_hook(win_ptr, key_hook, NULL);
-	mlx_loop(mlx_ptr);
+int	check_file_ext(char **argv)
+{
+	
+}
+
+int	check_argc(int argc)
+{
+	if (argc == 2)
+		return (1);
+	else
+		return (0);
+}
+
+
+void	check_all_errors(int argc, char **argv)
+{
+	if (check_argc(argc))
+		perror("Error");
+	if (check_file_ext(argv[1]))
+		perror("Error");
+	if (check_map(argv[1]))
+		perror("Error");
+}
+
+int	main(int argc, char **argv)
+{
+	if (check_all_errors(argc, argv) == 0)
+		printf("argc, map format and file content are checked, ready to launch fdf\n");
+		//launch_fdf(argv[1]);
+	else
+		perror("Error : invalid argument.\n");
 	return (0);
 }
+
+

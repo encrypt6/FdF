@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:42:16 by elsikira          #+#    #+#             */
-/*   Updated: 2023/11/23 16:42:52 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:28:50 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <strings.h>
 # include <assert.h>
 # include <limits.h>
+# include <errno.h>
 
 int				ft_atoi(const char *str);
 
