@@ -6,13 +6,13 @@
 #    By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/08 10:11:08 by elsikira          #+#    #+#              #
-#    Updated: 2024/07/10 13:34:05 by elsikira         ###   ########.fr        #
+#    Updated: 2024/07/10 17:16:18 by elsikira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRCS = my_libc
+SRCS = $(shell find conversion ctype memory put stdio string utils -name '*.c')
 
 OBJS = $(SRCS:.c=.o)
 
@@ -23,10 +23,6 @@ RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
-
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
-	cc -nostartfiles -shared -o libft.so $(OBJS)
 
 $(NAME): $(OBJS)
 	ar r $(NAME) $(OBJS)

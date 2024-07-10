@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:42:16 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/10 13:07:58 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/10 18:11:56 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <assert.h>
 # include <limits.h>
 # include <errno.h>
+# include <stdint.h>
 
 int				ft_atoi(const char *str);
 
@@ -99,5 +100,7 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s1, char const *set);
 
 char			**ft_split(char const *s, char c);
+
+int				ft_printf(const char *formatt, ...);
 
 #endif
