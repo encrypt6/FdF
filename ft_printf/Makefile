@@ -6,13 +6,13 @@
 #    By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 16:55:29 by elsikira          #+#    #+#              #
-#    Updated: 2024/01/04 12:17:20 by elsikira         ###   ########.fr        #
+#    Updated: 2024/07/10 12:14:24 by elsikira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = ft_printf.c ft_functions.c
+SRCS = ft_printf.c 
 
 OBJS = $(SRCS:.c=.o)
 

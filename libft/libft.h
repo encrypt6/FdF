@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:42:16 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/03 14:28:50 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:07:58 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 
 size_t			ft_strlen(const char *str);
 
+size_t			ft_nbrlen(int nbr);
+
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 
 char			*ft_strnstr(const char *big, const char *little, size_t len);
@@ -67,6 +69,12 @@ void			ft_putstr_fd(char *str, int fd);
 void			ft_putchar_fd(char c, int fd);
 
 void			ft_putnbr_fd(int n, int fd);
+
+void			ft_putpointer_fd(void *value, int fd);
+
+void			ft_putnbr_base_fd(unsigned int nbr, char *base, int fd);
+
+void			ft_putnbr_base_p_fd(unsigned long nbr, char *base, int fd);
 
 void			ft_putendl_fd(char *s, int fd);
 

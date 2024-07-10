@@ -6,38 +6,35 @@
 /*   By: elizasikira <elizasikira@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:55:17 by elsikira          #+#    #+#             */
-/*   Updated: 2024/06/15 13:57:08 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/10 12:18:36 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_strlen(const char *str)
+int ft_mandat(const char *format, va_list ap)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-int	ft_is_p(void *value)
-{
-	int	len;
+	size_t len;
 
 	len = 0;
-	if (value != NULL)
-	{
-		write(1, "0x", 2);
-		len = ft_putnbr_basep((uintptr_t)value, "0123456789abcdef") + 2;
-	}
-	else
-	{
-		len = write(1, "(nil)", 5);
-	}
+	if (*format == 'c')
+		len += ft_strlen(ft_putchar_fd((char)va_arg(ap, int), STDOUT_FILENO));
+	else if (*format == 's')
+		len += ft_strlen(ft_putstr_fd(va_arg(ap, char *), STDOUT_FILENO));
+	else if (*format == 'p')
+		len += ft_strlen(ft_putpointer_fd(va_arg(ap, void *), STDOUT_FILENO));
+	else if (*format == 'd')
+		len += ft_nbrlen(ft_putnbr_fd(va_arg(ap, int), STDOUT_FILENO));
+	else if (*format == 'i')
+		len += ft_nbrlen(ft_putnbr_fd(va_arg(ap, int), STDOUT_FILENO));
+	else if (*format == 'u')
+		len += ft_nbrlen(ft_putnbr_fd(va_arg(ap, unsigned int), STDOUT_FILENO));
+	else if (*format == 'x')
+		len += ft_nbrlen(ft_ft_putnbr_base_fd(va_arg(ap, unsigned long), "0123456789abcdef", STDOUT_FILENO));
+	else if (*format == 'X')
+		len += ft_nbrlen(ft_putnbr_base_fd(va_arg(ap, unsigned long), "0123456789ABCDEF", STDOUT_FILENO));
+	else if (*format == '%')
+		len += ft_strlen(ft_putchar_fd('%', STDOUT_FILENO));
 	return (len);
 }
 
@@ -60,13 +57,9 @@ int	ft_printf(const char *formatt, ...)
 			len += ft_mandat(&formatt[i], ap);
 		}
 		else
-			len += ft_putchar(formatt[i]);
+			len += ft_strlen(ft_putchar(formatt[i]));
 		i++;
 	}
 	va_end(ap);
 	return (len);
 }
-// int	main(void)
-// {
-// 	ft_printf("%c%c\n", 'a', 'b');
-// }
