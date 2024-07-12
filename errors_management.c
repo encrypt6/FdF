@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:46:06 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/03 16:20:57 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:22:24 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	print_error(void)
 {
-	ft_printf("Error\n");
+	int	val;
+	void *ptr = &val;
+	ft_dprintf(STDOUT_FILENO, "%p\n", ptr);
+	printf("%p\n", ptr);
 	exit(1);
 }
 

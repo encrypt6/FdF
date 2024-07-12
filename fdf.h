@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/03 17:57:13 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:47:31 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # define ESC_KEY 65307
 
 # include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
 # include "minilibx-linux/mlx_int.h"
 # include "minilibx-linux/mlx.h"
 

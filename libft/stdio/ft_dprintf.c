@@ -1,44 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_dprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elizasikira <elizasikira@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:55:17 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/10 17:58:10 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:15:11 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft.h"
 
-int ft_mandat(const char *format, va_list ap)
+int	flag_len(const char *format, va_list ap, int fd)
 {
-	size_t len;
-
-	len = 0;
 	if (*format == 'c')
-		len += ft_strlen(ft_putchar_fd((char)va_arg(ap, int), STDOUT_FILENO));
+		return (ft_putchar_fd((char)va_arg(ap, int), fd), 1);
 	else if (*format == 's')
-		len += ft_strlen(ft_putstr_fd(va_arg(ap, char *), STDOUT_FILENO));
+		return (ft_putstr_fd(va_arg(ap, char *), fd),
+			ft_strlen(va_arg(ap, const char *)));
 	else if (*format == 'p')
-		len += ft_strlen(ft_putpointer_fd(va_arg(ap, void *), STDOUT_FILENO));
-	else if (*format == 'd')
-		len += ft_nbrlen(ft_putnbr_fd(va_arg(ap, int), STDOUT_FILENO));
-	else if (*format == 'i')
-		len += ft_nbrlen(ft_putnbr_fd(va_arg(ap, int), STDOUT_FILENO));
+		return (ft_putpointer_fd(va_arg(ap, void *), fd),
+			ft_ptrlen(va_arg(ap, void *)));
+	else if ((*format == 'd') || (*format == 'i'))
+		return (ft_putnbr_fd(va_arg(ap, int), fd),
+			ft_nbrlen(va_arg(ap, int)));
 	else if (*format == 'u')
-		len += ft_nbrlen(ft_putnbr_fd(va_arg(ap, unsigned int), STDOUT_FILENO));
+		return (ft_putnbr_fd(va_arg(ap, unsigned int), fd),
+			ft_nbrlen(va_arg(ap, unsigned int)));
 	else if (*format == 'x')
-		len += ft_nbrlen(ft_putnbr_base_fd(va_arg(ap, unsigned long), "0123456789abcdef", STDOUT_FILENO));
+		return (ft_putnbr_base_fd(va_arg(ap, unsigned long),
+				"0123456789abcdef", fd),
+			ft_hexlen(va_arg(ap, unsigned long)));
 	else if (*format == 'X')
-		len += ft_nbrlen(ft_putnbr_base_fd(va_arg(ap, unsigned long), "0123456789ABCDEF", STDOUT_FILENO));
+		return (ft_putnbr_base_fd(va_arg(ap, unsigned long),
+				"0123456789ABCDEF", fd),
+			ft_hexlen(va_arg(ap, unsigned long)));
 	else if (*format == '%')
-		len += ft_strlen(ft_putchar_fd('%', STDOUT_FILENO));
-	return (len);
+		return (ft_putchar_fd('%', fd), 1);
+	return (0);
 }
 
-int	ft_printf(const char *formatt, ...)
+int	ft_dprintf(int fd, const char *formatt, ...)
 {
 	va_list	ap;
 	size_t	i;
@@ -54,10 +57,13 @@ int	ft_printf(const char *formatt, ...)
 		if (formatt[i] == '%')
 		{
 			i++;
-			len += ft_mandat(&formatt[i], ap);
+			len += flag_len(&formatt[i], ap, fd);
 		}
 		else
-			len += ft_strlen(ft_putchar_fd(formatt[i], STDOUT_FILENO));
+		{
+			ft_putchar_fd(formatt[i], fd);
+			len += 1;
+		}
 		i++;
 	}
 	va_end(ap);

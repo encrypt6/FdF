@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:42:16 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/10 18:11:56 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/12 18:05:32 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 size_t			ft_strlen(const char *str);
 
 size_t			ft_nbrlen(int nbr);
+
+size_t			ft_ptrlen(void *ptr);
+
+size_t			ft_hexlen(unsigned int hex);
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 
@@ -101,6 +105,6 @@ char			*ft_strtrim(char const *s1, char const *set);
 
 char			**ft_split(char const *s, char c);
 
-int				ft_printf(const char *formatt, ...);
+int				ft_dprintf(int fd, const char *formatt, ...);
 
 #endif
