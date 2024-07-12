@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:42:16 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/12 18:05:32 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/12 20:16:12 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ size_t			ft_ptrlen(void *ptr);
 size_t			ft_hexlen(unsigned int hex);
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
+
+int     		ft_strcmp(const char *s1, const char *s2);
 
 char			*ft_strnstr(const char *big, const char *little, size_t len);
 

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hexlen.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 17:26:25 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/12 19:46:03 by elsikira         ###   ########.fr       */
+/*   Created: 2024/04/04 03:49:54 by elsikira          #+#    #+#             */
+/*   Updated: 2024/07/12 20:16:37 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-size_t	ft_hexlen(unsigned int hex)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	uintptr_t	address;
-	int			digits;
-
-	digits = 0;
-	address = hex;
-	while (address != 0)
+	while ((*s1 && *s2) && (*s1 == *s2))
 	{
-		digits++;
-		address /= 16;
+		s1++;
+		s2++;
 	}
-	return (digits);
+	return (*s1 - *s2);
 }

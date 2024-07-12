@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:46:06 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/12 19:22:24 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/12 20:17:38 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,20 @@
 
 void	print_error(void)
 {
-	int	val;
-	void *ptr = &val;
-	ft_dprintf(STDOUT_FILENO, "%p\n", ptr);
-	printf("%p\n", ptr);
+	ft_dprintf(STDERR_FILENO, "Error : invalid number of parameter\n");
 	exit(1);
 }
 
-/*int	check_map(char **argv)
+int	check_file(char **argv)
 {
-	if ()
-}
+	const char *ext;
 
-int	check_file_ext(char **argv)
-{
-	if (
-	return(8);	
-}*/
+	ext = ft_strrchr(argv[1], '.');
+	if (ext != NULL && ft_strcmp(ext, ".fdf") == 0)
+		return (0);
+	else
+		return (1);
+}
 
 int check_argc(int argc)
 {
@@ -42,11 +39,8 @@ int check_argc(int argc)
 
 void	check_all_errors(int argc, char **argv)
 {
-	(void)argv;
 	if (check_argc(argc))
 		print_error();	
-	//if (check_file_ext(argv[1]))
-		//perror("Error");
-	//if (check_map(argv[1]))
-		//perror("Error");
+	if (check_file(&argv[1]))
+		print_error();	
 }
