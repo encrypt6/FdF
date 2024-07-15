@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/12 15:47:31 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:20:04 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int		main(int argc, char **argv);
 void	check_all_errors(int argc, char **argv);
 
 //key hooks utils
-int	key_hook(int key_code, void *param);
+int		key_hook(int key_code, void *param);
 
 #endif

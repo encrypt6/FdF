@@ -6,41 +6,49 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:46:06 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/12 20:17:38 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:19:43 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	print_error(void)
+void	check_file(char *argv)
 {
-	ft_dprintf(STDERR_FILENO, "Error : invalid number of parameter\n");
-	exit(1);
+	int	map;
+
+	map = open(argv, O_RDONLY);
+	if (map == -1)
+	{
+		perror("Error");
+		exit(1);
+	}
+	if (open(argv, O_RDONLY) == -1)
+	{
+		perror("Error");
+		exit(1);
+	}
+	close(map);
 }
 
-int	check_file(char **argv)
+void	check_argc(int argc)
 {
-	const char *ext;
-
-	ext = ft_strrchr(argv[1], '.');
-	if (ext != NULL && ft_strcmp(ext, ".fdf") == 0)
-		return (0);
-	else
-		return (1);
-}
-
-int check_argc(int argc)
-{
-	if (argc == 2)
-		return (0);
-	else
-		return (1);
+	if (argc > 2)
+	{
+		errno = E2BIG;
+		perror("Error");
+		exit(1);
+	}
+	else if (argc < 2)
+	{
+		ft_dprintf(STDERR_FILENO, "Error: 2 arguments are required\n");
+		exit(1);
+	}
 }
 
 void	check_all_errors(int argc, char **argv)
 {
-	if (check_argc(argc))
-		print_error();	
-	if (check_file(&argv[1]))
-		print_error();	
+	if (argc != 2)
+		check_argc(argc);
+	if (argc == 2)
+		check_file(argv[1]);
 }

@@ -6,7 +6,7 @@
 #    By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 14:39:19 by elsikira          #+#    #+#              #
-#    Updated: 2024/07/12 20:19:04 by elsikira         ###   ########.fr        #
+#    Updated: 2024/07/12 20:22:37 by elsikira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ MAIN_OBJ = $(MAIN_SRC:.c=.o)
 CC = cc
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror -g3 -Iinclude -I. -I$(LIBFT_PATH) -I$(MINILIBX_PATH)
+CFLAGS = -Wall -Wextra -Werror -g3 -Iinclude -I$(LIBFT_PATH) -I$(MINILIBX_PATH)
 all: libft minilibx $(NAME)
 
 $(NAME): $(OBJS) $(MAIN_OBJ)
