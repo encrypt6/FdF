@@ -6,7 +6,7 @@
 /*   By: esikira <elsikira@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:55:17 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/16 18:43:26 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:46:47 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,19 @@ int flag_len(const char *format, va_list ap, int fd)
     else if (*format == 'u')
     {
         unsigned int u = va_arg(ap, unsigned int);
-        ft_putnbr_base_fd(u, fd, "0123456789");
+        ft_putnbr_base_fd(u, "0123456789", fd);
         return ft_nbrlen(u);
     }
     else if (*format == 'x')
     {
         unsigned long x = va_arg(ap, unsigned long);
-        ft_putnbr_base_fd(x, fd, "0123456789abcdef");
+        ft_putnbr_base_fd(x, "0123456789abcdef", fd);
         return ft_hexlen(x);
     }
     else if (*format == 'X')
     {
         unsigned long X = va_arg(ap, unsigned long);
-        ft_putnbr_base_fd(X, fd, "0123456789ABCDEF");
+        ft_putnbr_base_fd(X, "0123456789ABCDEF", fd);
         return ft_hexlen(X);
     }
     else if (*format == '%')
