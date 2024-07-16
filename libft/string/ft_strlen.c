@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:30:36 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/10 17:29:47 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:07:08 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 size_t	ft_strlen(const char *str)
 {
-	size_t	a;
+	size_t	i;
 
-	a = 0;
-	while (*(str + a) != '\0')
-	{
-		a++;
-	}
-	return (a);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

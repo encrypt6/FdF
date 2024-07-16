@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 14:15:14 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/10 17:27:41 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/16 14:52:41 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void	*ft_calloc(size_t count, size_t size)
 	ptr = (void *)malloc(count * size);
 	if (!ptr)
 		return (NULL);
-	ft_bzero (ptr, count * size);
+	ft_memset(ptr, '\0', count * size);
 	return (ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:42:52 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/15 17:29:03 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:44:36 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_first_line(buffer[fd]);
 	buffer[fd] = ft_new_line(buffer[fd]);
+	free(buffer[fd]);
 	return (line);
 }
 
