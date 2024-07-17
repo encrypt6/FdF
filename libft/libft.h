@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:42:16 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/16 14:57:23 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/17 19:32:40 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,11 @@ char			**ft_split(char const *s, char c);
 int				ft_dprintf(int fd, const char *formatt, ...);
 
 char			*get_next_line(int fd);
+
+char			*get_first_line(int fd);
+char			*ft_read_file(int fd, char *line);
+char			*ft_first_line(char *buffer);
+int				ft_getcountline(char *s);
 
 
 #endif

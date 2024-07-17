@@ -6,7 +6,7 @@
 #    By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 14:39:19 by elsikira          #+#    #+#              #
-#    Updated: 2024/07/15 15:27:50 by elsikira         ###   ########.fr        #
+#    Updated: 2024/07/17 19:54:42 by elsikira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = fdf
 
 MAIN_SRC = main.c
 
-SRCS = errors_management.c launch_fdf.c key_hook_utils.c 
+SRCS = errors_management.c launch_fdf.c key_hook_utils.c free_utils.c map_utils.c 
 
 LIBFT_PATH = libft
 MINILIBX_PATH = minilibx-linux

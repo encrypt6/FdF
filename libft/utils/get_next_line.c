@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:42:52 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/17 16:11:52 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:53:55 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ char	*ft_read_file(int fd, char *line)
 	if (!line)
 		line = ft_calloc(1, 1);
 	buffer = malloc(BUFFER_SIZE + 1);
+
 	while (bytes_read > 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
@@ -144,7 +145,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_first_line(buffer[fd]);
 	buffer[fd] = ft_new_line(buffer[fd]);
-	//free(buffer[fd]);
 	return (line);
 }
 
