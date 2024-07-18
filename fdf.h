@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/17 20:05:42 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:45:54 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,8 @@ int		key_hook(int key_code, void *param);
 
 void	free_split(char **split);
 
-int		get_width(char *map_file);
+t_map	*cpy_map_to_struct(char *map_file);
 
-int		get_height(char *map_file);
 
 
 

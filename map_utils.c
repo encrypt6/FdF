@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:54:48 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/17 19:55:45 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:20:29 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	get_height(char *map_file)
 	t_map	map;
 	int		fd;
 	char	*abs;
+	
 	map.height = 0;
 	fd = open(map_file, O_RDONLY);
 	while (1)
@@ -52,4 +53,19 @@ int	get_height(char *map_file)
 	}	
 	close(fd);
 	return(map.height);
+}
+
+t_map	*cpy_map_to_struct(char *map_file)
+{
+	t_map	*map;
+
+	map = malloc(sizeof(t_map));
+	if (!map)
+	{
+		perror("Error");
+		exit(EXIT_FAILURE);
+	}
+	map->height = get_height(map_file);
+	map->width = get_width(map_file);
+	return(map);
 }
