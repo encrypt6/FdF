@@ -6,21 +6,49 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:54:48 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/18 15:20:29 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:02:44 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+t_matrix	get_point(char *map_file)
+{
+	t_map	map;
+	char 	*abs;
+	char	**splitted_abs;
+	int		fd;
+
+	fd = open(map_file, O_RDONLY);
+	abs = get_first_line(fd);
+	splitted_abs = ft_split(abs, ' ');
+	while (get_next_line(fd))
+	{
+		while (*splitted_abs)
+		{
+			map.point = ft_atoi(*splitted_abs);
+			ft_dprintf(STDOUT_FILENO, "%s", *splitted_abs);
+			splitted_abs++;
+		}
+		if (abs == NULL)
+			break ;
+		abs = get_next_line(fd);
+	}
+	free(abs);
+	free_split(splitted_abs);
+	return (map.point);
+	close (fd);
+}
+
 int	get_width(char *map_file)
 {
 	t_map	map;
-	char	**splitted_abs;
 	char	*abs;
+	char	**splitted_abs;
 	int		fd;
 
 	map.width = 0;
-	fd = open (map_file, O_RDONLY);
+	fd = open(map_file, O_RDONLY);
 	abs = get_first_line(fd);
 	splitted_abs = ft_split(abs, ' ');
 	free(abs);
@@ -57,15 +85,16 @@ int	get_height(char *map_file)
 
 t_map	*cpy_map_to_struct(char *map_file)
 {
-	t_map	*map;
+	t_map	*map_cpy;
 
-	map = malloc(sizeof(t_map));
-	if (!map)
+	map_cpy = malloc(sizeof(t_map));
+	if (!map_cpy)
 	{
 		perror("Error");
 		exit(EXIT_FAILURE);
 	}
-	map->height = get_height(map_file);
-	map->width = get_width(map_file);
-	return(map);
+	map_cpy->height = get_height(map_file);
+	map_cpy->width = get_width(map_file);
+	map_cpy->point = get_point(map_file);
+	return(map_cpy);
 }

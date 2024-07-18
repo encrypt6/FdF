@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_first_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 11:42:52 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/17 19:38:20 by elsikira         ###   ########.fr       */
+/*   Created: 2024/07/18 18:42:38 by elsikira          #+#    #+#             */
+/*   Updated: 2024/07/18 18:46:34 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ char	*get_first_line(int fd)
 	if (!buffer[fd])
 		return (NULL);
 	line = ft_first_line(buffer[fd]);
-	free(buffer[fd]);	
 	return (line);
 }
