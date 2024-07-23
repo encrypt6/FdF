@@ -17,12 +17,25 @@ int	flag_cs(const char *format, va_list ap, int fd)
 	char	c;
 	char	*str;
 
-	c = (char)va_arg(ap, int);
-	str = va_arg(ap, char *);
 	if (*format == 'c')
+	{
+		c = (char)va_arg(ap, int);
 		return (ft_putchar_fd(c, fd), 1);
-	else if (*format == 's')
-		return (ft_putstr_fd(str, fd), ft_strlen(str));
+	}
+	if (*format == 's')
+	{
+		str = va_arg(ap, char *);
+		if (str)
+		{
+			ft_putstr_fd(str, fd);
+			return (ft_strlen(str));
+		}
+		else
+		{
+			ft_putstr_fd("(null)", fd);
+			return (6);
+		}
+	}
 	return (0);
 }
 

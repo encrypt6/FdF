@@ -32,6 +32,7 @@ t_lines	get_lines(char *map_file, int height)
 	}
 	//lines = *lines.head;
 	close (fd);
+	ft_dprintf(STDOUT_FILENO, "We are at : %s", lines.line);
 	printf("We are at : %s\n", lines.line);
 	return (lines);
 }
