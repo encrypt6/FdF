@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:54:48 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/23 17:04:55 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/23 20:33:07 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,22 @@ t_lines	get_lines(char *map_file, int height)
 	t_lines	lines;
 	int		fd;
 	int		i;
-
+	
 	i = 0;
+	//lines.head = &lines;
 	fd = open(map_file, O_RDONLY);
-	while (i < height + 1)
+	while (i <= height)
 	{
 		lines.line = get_next_line(fd);
-		dprintf(STDOUT_FILENO, "%s", lines.line);
-		free(lines.line);
+		if (lines.line == NULL)
+			break ;
+		ft_dprintf(STDOUT_FILENO, "%s", lines.line);
 		i++;
+		free(lines.line);
 	}
+	//lines = *lines.head;
 	close (fd);
+	printf("We are at : %s\n", lines.line);
 	return (lines);
 }
 

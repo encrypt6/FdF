@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:26:06 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/10 17:28:29 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/23 20:19:17 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	ft_putstr_fd(char *s, int fd)
 	size_t	i;
 
 	if (!s)
-		return ;
+		write(fd, "(null)", 6);
 	i = 0;
 	while (s[i])
+	{
+		write(fd, &s[i], 1);
 		i++;
-	write(fd, s, i);
+	}
 }
