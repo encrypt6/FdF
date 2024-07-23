@@ -12,32 +12,36 @@
 
 #include "fdf.h"
 
-t_matrix	get_point(char *map_file)
+int	**get_point(char *map_file)
 {
 	t_map	map;
 	char 	*abs;
 	char	**splitted_abs;
 	int		fd;
 
+	map.point = NULL;
 	fd = open(map_file, O_RDONLY);
 	abs = get_first_line(fd);
+	ft_dprintf(STDOUT_FILENO, "Line is :%s\n", abs);
 	splitted_abs = ft_split(abs, ' ');
-	while (get_next_line(fd))
+	/*while (abs)
 	{
 		while (*splitted_abs)
 		{
-			map.point = ft_atoi(*splitted_abs);
+			map.points = ft_atoi(*splitted_abs);
 			ft_dprintf(STDOUT_FILENO, "%s", *splitted_abs);
 			splitted_abs++;
 		}
 		if (abs == NULL)
 			break ;
 		abs = get_next_line(fd);
-	}
+	}*/
+	map.point = ft_atoi(abs);
+	ft_dprintf(STDOUT_FILENO, "Line is :%d\n", map.point);
 	free(abs);
 	free_split(splitted_abs);
-	return (map.point);
 	close (fd);
+	return (map.point);
 }
 
 int	get_width(char *map_file)
@@ -95,6 +99,5 @@ t_map	*cpy_map_to_struct(char *map_file)
 	}
 	map_cpy->height = get_height(map_file);
 	map_cpy->width = get_width(map_file);
-	map_cpy->point = get_point(map_file);
 	return(map_cpy);
 }

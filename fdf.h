@@ -29,12 +29,19 @@ typedef struct	s_point
 	int	z;
 }t_point;
 
+typedef struct	s_cpy
+{
+	struct	s_cpy	*head;
+	struct	s_cpy	*next;
+	char		*line;
+}t_cpy;
+
 typedef struct	s_map
 {
 	//t_point	**point;
 	int	height;
-	int width;
-	int	point;
+	int 	width;
+	int	**point;
 }t_map;
 
 typedef struct	s_data
