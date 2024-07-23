@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/23 15:10:13 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:11:07 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_map
 {
 	int		height;
 	int		width;
-	t_lines	*lines;
+	t_lines	lines;
 }t_map;
 
 typedef struct	s_data
@@ -56,7 +56,7 @@ void	free_split(char **split);
 
 t_map	*cpy_map_to_struct(char *map_file);
 
-
+void	fill_matrix(t_map *map_cpy);
 
 
 

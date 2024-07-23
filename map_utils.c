@@ -6,29 +6,26 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:54:48 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/23 15:11:25 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/23 17:04:55 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_lines	*get_lines(char *map_file)
+t_lines	get_lines(char *map_file, int height)
 {
-	t_map	map;
+	t_lines	lines;
 	int		fd;
-	t_lines	*lines;
+	int		i;
 
-	lines = NULL;
+	i = 0;
 	fd = open(map_file, O_RDONLY);
-	while (1)
+	while (i < height + 1)
 	{
-		lines->line = get_next_line(fd);
-		printf("%s", lines->line);
-		if (lines->line == NULL)
-			break ;
-		map.height++;
-		free (lines->line);
-		lines->line = NULL;
+		lines.line = get_next_line(fd);
+		dprintf(STDOUT_FILENO, "%s", lines.line);
+		free(lines.line);
+		i++;
 	}
 	close (fd);
 	return (lines);
@@ -89,6 +86,6 @@ t_map	*cpy_map_to_struct(char *map_file)
 	}
 	map_cpy->height = get_height(map_file);
 	map_cpy->width = get_width(map_file);
-//	map_cpy->lines = get_lines(map_file);
+	map_cpy->lines = get_lines(map_file, map_cpy->height);
 	return(map_cpy);
 }
