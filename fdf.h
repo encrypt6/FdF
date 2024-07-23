@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/18 19:07:05 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:10:13 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,18 @@
 # include "minilibx-linux/mlx_int.h"
 # include "minilibx-linux/mlx.h"
 
-typedef struct	s_point
+typedef struct	s_lines
 {
-	int	x;
-	int	y;
-	int	z;
-}t_point;
-
-typedef struct	s_cpy
-{
-	struct	s_cpy	*head;
-	struct	s_cpy	*next;
-	char		*line;
-}t_cpy;
+	struct s_lines	*head;
+	struct s_lines	*next;
+	char			*line;
+}t_lines;
 
 typedef struct	s_map
 {
-	//t_point	**point;
-	int	height;
-	int 	width;
-	int	**point;
+	int		height;
+	int		width;
+	t_lines	*lines;
 }t_map;
 
 typedef struct	s_data

@@ -6,42 +6,32 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:54:48 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/18 20:02:44 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:11:25 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	**get_point(char *map_file)
+t_lines	*get_lines(char *map_file)
 {
 	t_map	map;
-	char 	*abs;
-	char	**splitted_abs;
 	int		fd;
+	t_lines	*lines;
 
-	map.point = NULL;
+	lines = NULL;
 	fd = open(map_file, O_RDONLY);
-	abs = get_first_line(fd);
-	ft_dprintf(STDOUT_FILENO, "Line is :%s\n", abs);
-	splitted_abs = ft_split(abs, ' ');
-	/*while (abs)
+	while (1)
 	{
-		while (*splitted_abs)
-		{
-			map.points = ft_atoi(*splitted_abs);
-			ft_dprintf(STDOUT_FILENO, "%s", *splitted_abs);
-			splitted_abs++;
-		}
-		if (abs == NULL)
+		lines->line = get_next_line(fd);
+		printf("%s", lines->line);
+		if (lines->line == NULL)
 			break ;
-		abs = get_next_line(fd);
-	}*/
-	map.point = ft_atoi(abs);
-	ft_dprintf(STDOUT_FILENO, "Line is :%d\n", map.point);
-	free(abs);
-	free_split(splitted_abs);
+		map.height++;
+		free (lines->line);
+		lines->line = NULL;
+	}
 	close (fd);
-	return (map.point);
+	return (lines);
 }
 
 int	get_width(char *map_file)
@@ -99,5 +89,6 @@ t_map	*cpy_map_to_struct(char *map_file)
 	}
 	map_cpy->height = get_height(map_file);
 	map_cpy->width = get_width(map_file);
+//	map_cpy->lines = get_lines(map_file);
 	return(map_cpy);
 }

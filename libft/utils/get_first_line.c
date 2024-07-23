@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 18:42:38 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/18 18:46:34 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:16:46 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ char	*get_first_line(int fd)
 	if (!buffer[fd])
 		return (NULL);
 	line = ft_first_line(buffer[fd]);
+	free(buffer[fd]);
 	return (line);
 }
