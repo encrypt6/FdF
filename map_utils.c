@@ -12,28 +12,46 @@
 
 #include "fdf.h"
 
-t_lines	get_lines(char *map_file, int height)
+void	create_nodes(char *map_file, t_map *map_cpy)
+{
+	t_lines	*node;
+	t_lines	*head;
+	int		fd;
+
+	fd = open(map_file, O_RDONLY);
+	node = malloc(sizeof(t_map));
+	if (node == NULL)
+		return ;
+	node->next = NULL;
+	node->line = get_next_line(fd);
+	if (map_cpy == NULL)
+		map_cpy = node;
+	else
+	{
+		head = map_cpy;
+		while (head->next != NULL)
+			head = head->next;
+		head->next = node;
+	}
+}
+
+void	get_lines_to_list(int height)
 {
 	t_lines	lines;
-	int		fd;
+	t_map	*map_cpy;
 	int		i;
-	
+
 	i = 0;
-	//lines.head = &lines;
-	fd = open(map_file, O_RDONLY);
 	while (i <= height)
 	{
-		lines.line = get_next_line(fd);
+		create_nodes(map_cpy);
+		ft_dprintf(STDOUT_FILENO, "%s", lines.line);
 		if (lines.line == NULL)
 			break ;
-		ft_dprintf(STDOUT_FILENO, "%s", lines.line);
-		i++;
 		free(lines.line);
+		i++;
 	}
-	//lines = *lines.head;
 	close (fd);
-	ft_dprintf(STDOUT_FILENO, "We are at : %s", lines.line);
-	printf("We are at : %s\n", lines.line);
 	return (lines);
 }
 
@@ -92,6 +110,7 @@ t_map	*cpy_map_to_struct(char *map_file)
 	}
 	map_cpy->height = get_height(map_file);
 	map_cpy->width = get_width(map_file);
-	map_cpy->lines = get_lines(map_file, map_cpy->height);
+	while (get_lines_to_list(map_cpy->height));
+		create_nodes(map_file, map_cpy);
 	return(map_cpy);
 }

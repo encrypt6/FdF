@@ -14,7 +14,6 @@
 
 void	fill_matrix(t_map *map_cpy)
 {
-	(void)*map_cpy;
-	ft_dprintf(STDOUT_FILENO, "Fill the matrix\n");
+	ft_dprintf(STDOUT_FILENO, "We are at %s\n", map_cpy->lines.line);
 	//ft_dprintf(STDOUT_FILENO, "%s\n", map_cpy->lines.line);
 }
