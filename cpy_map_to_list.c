@@ -12,63 +12,47 @@
 
 #include "fdf.h"
 
-t_map	*create_nodes(char *map_file, t_map *map_cpy)
+t_map	*create_nodes(char *line)
 {
 	t_map	*node;
-	t_map	*head;
-	int		fd;
 
-	fd = open(map_file, O_RDONLY);
 	node = malloc(sizeof(t_map));
 	if (!node)
 	{
 		perror("Error");
-		close(fd);
 		return (NULL);
 	}
-	node->line = get_next_line(fd);
-	if (!node->line)
-	{
-		close(fd);
-		return (NULL);
-	}
+	node->line = line;
 	node->next = NULL;
-	if (map_cpy == NULL)
-		map_cpy = node;
-	else
-	{
-		head = map_cpy;
-		while (head->next != NULL)
-			head = head->next;
-		head->next = node;
-	}
-	close (fd);
-	return (map_cpy);
+//	printf("Created node with line: %s\n", line);
+	return (node);
 }
 
 t_map	*get_lines_to_list(char *map_file, int height)
 {
 	t_map	*map_cpy;
 	t_map	*current;
-	int		i;
+	t_map	*new_node;
+	int	fd;
+	char	*line;
+	int	i;
 
+	fd = open(map_file, O_RDONLY);
 	map_cpy = NULL;
 	i = 0;
-	while (i < height)
+	while (i < height && (line = get_next_line(fd)))
 	{
-		map_cpy = create_nodes(map_file, map_cpy);
+		new_node = create_nodes(line);
+		if (!new_node)
+			return (close(fd), NULL);
 		if (!map_cpy)
-			return (NULL);
-		current = map_cpy;
-		while (current->next != NULL)
-			current = current->next;
-		if (current->line == NULL)
-			break ;
-		ft_dprintf(STDOUT_FILENO, "%s", current->line);
-		free(current->line);
-		current->line = NULL;
+			map_cpy = new_node;
+		else
+			current->next = new_node;
+		current = new_node;
 		i++;
 	}
+	close(fd);
 	return (map_cpy);
 }
 
@@ -84,6 +68,7 @@ t_map	*cpy_map_to_list(char *map_file)
 	}
 	map_cpy->height = get_height(map_file);
 	map_cpy->width = get_width(map_file);
+	map_cpy->line = NULL;
 	map_cpy->next = get_lines_to_list(map_file, map_cpy->height);
 	if (!map_cpy->next)
 	{

@@ -12,6 +12,14 @@
 
 #include "fdf.h"
 
+/*void	print_first_value(t_map *head)
+{
+	if (head && head->line)
+		printf("first val is %s\n", head->line);
+	else
+		printf("Empty\n");
+}*/
+
 void	launch_fdf(char *map_file)
 {
 	t_data	data;
@@ -25,7 +33,7 @@ void	launch_fdf(char *map_file)
 	}
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "My FdF");
-	//draw(map_cpy, data);
 	mlx_key_hook(data.win_ptr, key_hook, NULL);
+	draw(map_cpy, data);
 	mlx_loop(data.mlx_ptr);
 }

@@ -12,21 +12,18 @@
 
 #include "fdf.h"
 
-t_point	*line_to_points(char *line, int *num_points)
+t_point	*line_to_points(char *line, int width)
 {
 	char **splitted_line;
 	t_point *points;
 	int i;
 
 	splitted_line = ft_split(line, ' ');
-	*num_points = 0;
-	while (splitted_line[*num_points])
-		(*num_points)++;
-	points = malloc(sizeof(t_point) * (*num_points));
+	points = malloc(sizeof(t_point) * width);
 	if (!points)
 		return (NULL);
 	i = 0;
-	while (i < *num_points)
+	while (i < width)
 	{
 		points[i].x = i;
 		points[i].y = 0;
@@ -43,24 +40,24 @@ void	draw(t_map *map_cpy, t_data data)
 	t_point **points;
 	int	i;
 	int	j;
-	int	num_points;
 
+	current = map_cpy->next;
 	i = 0;
-	points = malloc(sizeof(t_point) * map_cpy->height);
+	points = malloc(sizeof(t_point *) * map_cpy->height);
 	if (!points)
 		return ;
 
 	while (current)
 	{
-		points[i] = line_to_points(current->line, &num_points);
+		points[i] = line_to_points(current->line, map_cpy->width);
 		current = current->next;
 		i++;
 	}
 	i = 0;
-	j = 0;
 	while (i < map_cpy->height)
 	{
-		while (j < num_points)
+		j = 0;
+		while (j < map_cpy->width)
 		{
 			mlx_pixel_put(data.mlx_ptr, data.win_ptr, points[i][j].x, points[i][j].y, 0xFFFFFF);
 			//if (j < num_points - 1)
