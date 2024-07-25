@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:54:48 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/25 14:54:31 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/25 18:52:05 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	free_map(t_map *map)
 	{
 		temp = map;
 		map = map->next;
-		free(temp->line);
+		if (temp->line)
+			free(temp->line);
 		free(temp);
 	}
 }
@@ -36,11 +37,16 @@ t_map	*create_nodes(char *map_file, t_map *map_cpy)
 	if (!node)
 	{
 		perror("Error");
+		close(fd);
 		return (NULL);
 	}
 	node->line = get_next_line(fd);
+	if (!node->line)
+	{
+		close(fd);
+		return (NULL);
+	}
 	node->next = NULL;
-	close (fd);
 	if (map_cpy == NULL)
 		map_cpy = node;
 	else
@@ -50,6 +56,7 @@ t_map	*create_nodes(char *map_file, t_map *map_cpy)
 			head = head->next;
 		head->next = node;
 	}
+	close (fd);
 	return (map_cpy);
 }
 
@@ -61,14 +68,14 @@ t_map	*get_lines_to_list(char *map_file, int height)
 
 	map_cpy = NULL;
 	i = 0;
-	while (i <= height)
+	while (i < height)
 	{
 		map_cpy = create_nodes(map_file, map_cpy);
+		if (!map_cpy)
+			return (NULL);
 		current = map_cpy;
 		while (current->next != NULL)
-		{
 			current = current->next;
-		}
 		if (current->line == NULL)
 			break ;
 		ft_dprintf(STDOUT_FILENO, "%s", current->line);
@@ -134,6 +141,11 @@ t_map	*cpy_map_to_struct(char *map_file)
 	}
 	map_cpy->height = get_height(map_file);
 	map_cpy->width = get_width(map_file);
-	get_lines_to_list(map_file, map_cpy->height);
+	map_cpy->next = get_lines_to_list(map_file, map_cpy->height);
+	if (!map_cpy->next)
+	{
+		free(map_cpy);
+		return (NULL);
+	}
 	return(map_cpy);
 }

@@ -6,7 +6,7 @@
 /*   By: esikira <elsikira@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:55:17 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/17 13:35:59 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:33:38 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,13 @@ int	flag_pxx(const char *format, va_list ap, int fd)
 int	flag_apply(const char *format, va_list ap, int fd)
 {
 	if (*format == 'c' || *format == 's')
-		flag_cs(format, ap, fd);
+		return (flag_cs(format, ap, fd));
 	else if (*format == 'd' || *format == 'i'
 		|| *format == 'u')
-		flag_diu(format, ap, fd);
+		return (flag_diu(format, ap, fd));
 	else if (*format == 'p' || *format == 'x'
 		|| *format == 'X')
-		flag_pxx(format, ap, fd);
+		return (flag_pxx(format, ap, fd));
 	else if (*format == '%')
 	{
 		ft_putchar_fd('%', fd);

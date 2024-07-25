@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:42:52 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/17 18:53:55 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/25 18:47:29 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,8 @@ or if BUFFER_SIZE isnt strictly positive, it returns NULL.
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[1024];
 	char		*line;
-
+	static char		*buffer[1024];
 	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer[fd] = ft_read_file(fd, buffer[fd]);
@@ -147,27 +146,3 @@ char	*get_next_line(int fd)
 	buffer[fd] = ft_new_line(buffer[fd]);
 	return (line);
 }
-
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*line;
-// 	int		count;
-
-// 	count = 0;
-// 	fd = open("txt.txt", O_RDONLY);
-// 	if (fd == -1)
-// 		return (1);
-// 	while (1)
-// 	{
-// 		line = get_next_line(fd);
-// 		if (line == NULL)
-// 			break ;
-// 		count++;
-// 		printf("%s", line);
-// 		free (line);
-// 		line = NULL;
-// 	}
-// 	close(fd);
-// 	return (0);
-// }

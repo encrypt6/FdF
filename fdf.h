@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/25 14:48:35 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/25 18:55:57 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@
 # include "minilibx-linux/mlx_int.h"
 # include "minilibx-linux/mlx.h"
 
-typedef struct	s_lines
-{
-	struct s_lines	*head;
-	struct s_lines	*next;
-	char			*line;
-}t_lines;
-
 typedef struct	s_map
 {
 	int		height;
@@ -36,6 +29,8 @@ typedef struct	s_map
 	struct s_map	*head;
 	struct s_map	*next;
 	char			*line;
+	int				x;
+	int				y;
 }t_map;
 
 typedef struct	s_data
@@ -44,7 +39,6 @@ typedef struct	s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 }t_data;
-
 
 int		main(int argc, char **argv);
 
