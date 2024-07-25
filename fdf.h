@@ -22,6 +22,13 @@
 # include "minilibx-linux/mlx_int.h"
 # include "minilibx-linux/mlx.h"
 
+typedef struct	s_point
+{
+	int	x;
+	int	y;
+	int	z;
+}t_point;
+
 typedef struct	s_map
 {
 	int		height;
@@ -50,10 +57,16 @@ int		key_hook(int key_code, void *param);
 
 void	free_split(char **split);
 
-t_map	*cpy_map_to_struct(char *map_file);
+t_map	*cpy_map_to_list(char *map_file);
+
+int	get_width(char *map_file);
+
+int	get_height(char *map_file);
 
 void	fill_matrix(t_map *map_cpy);
 
 void	free_map(t_map *map);
+
+void	draw(t_map *map_cpy, t_data data);
 
 #endif

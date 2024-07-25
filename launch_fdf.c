@@ -14,18 +14,18 @@
 
 void	launch_fdf(char *map_file)
 {
-	//t_data	data;
-    t_map *map_cpy;
+	t_data	data;
+	t_map *map_cpy;
 
-	map_cpy = cpy_map_to_struct(map_file);
+	map_cpy = cpy_map_to_list(map_file);
 	if (!map_cpy)
 	{
 		perror("Error");
 		exit(1);
 	}
-	draw(map_cpy, put_pixel);
-	//data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "My FdF");
-	//generate_points(data.mlx_ptr, data.win_ptr, map.width, map.height);
-	//mlx_key_hook(data.win_ptr, key_hook, NULL);
-	//mlx_loop(data.mlx_ptr);
+	data.mlx_ptr = mlx_init();
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "My FdF");
+	//draw(map_cpy, data);
+	mlx_key_hook(data.win_ptr, key_hook, NULL);
+	mlx_loop(data.mlx_ptr);
 }
