@@ -6,24 +6,41 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:54:48 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/23 20:33:07 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:54:31 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	create_nodes(char *map_file, t_map *map_cpy)
+void	free_map(t_map *map)
 {
-	t_lines	*node;
-	t_lines	*head;
+	t_map	*temp;
+
+	while (map != NULL)
+	{
+		temp = map;
+		map = map->next;
+		free(temp->line);
+		free(temp);
+	}
+}
+
+t_map	*create_nodes(char *map_file, t_map *map_cpy)
+{
+	t_map	*node;
+	t_map	*head;
 	int		fd;
 
 	fd = open(map_file, O_RDONLY);
 	node = malloc(sizeof(t_map));
-	if (node == NULL)
-		return ;
-	node->next = NULL;
+	if (!node)
+	{
+		perror("Error");
+		return (NULL);
+	}
 	node->line = get_next_line(fd);
+	node->next = NULL;
+	close (fd);
 	if (map_cpy == NULL)
 		map_cpy = node;
 	else
@@ -33,26 +50,33 @@ void	create_nodes(char *map_file, t_map *map_cpy)
 			head = head->next;
 		head->next = node;
 	}
+	return (map_cpy);
 }
 
-void	get_lines_to_list(int height)
+t_map	*get_lines_to_list(char *map_file, int height)
 {
-	t_lines	lines;
 	t_map	*map_cpy;
+	t_map	*current;
 	int		i;
 
+	map_cpy = NULL;
 	i = 0;
 	while (i <= height)
 	{
-		create_nodes(map_cpy);
-		ft_dprintf(STDOUT_FILENO, "%s", lines.line);
-		if (lines.line == NULL)
+		map_cpy = create_nodes(map_file, map_cpy);
+		current = map_cpy;
+		while (current->next != NULL)
+		{
+			current = current->next;
+		}
+		if (current->line == NULL)
 			break ;
-		free(lines.line);
+		ft_dprintf(STDOUT_FILENO, "%s", current->line);
+		free(current->line);
+		current->line = NULL;
 		i++;
 	}
-	close (fd);
-	return (lines);
+	return (map_cpy);
 }
 
 int	get_width(char *map_file)
@@ -110,7 +134,6 @@ t_map	*cpy_map_to_struct(char *map_file)
 	}
 	map_cpy->height = get_height(map_file);
 	map_cpy->width = get_width(map_file);
-	while (get_lines_to_list(map_cpy->height));
-		create_nodes(map_file, map_cpy);
+	get_lines_to_list(map_file, map_cpy->height);
 	return(map_cpy);
 }
