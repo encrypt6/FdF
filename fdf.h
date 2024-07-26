@@ -17,8 +17,12 @@
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
 # define ESC_KEY 65307
+# define SCALE_X 20
+# define SCALE_Y 20
+
 
 # include "libft/libft.h"
+# include <math.h>
 # include "minilibx-linux/mlx_int.h"
 # include "minilibx-linux/mlx.h"
 

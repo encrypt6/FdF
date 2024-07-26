@@ -26,6 +26,7 @@ void	launch_fdf(char *map_file)
 	t_map *map_cpy;
 
 	map_cpy = cpy_map_to_list(map_file);
+	
 	if (!map_cpy)
 	{
 		perror("Error");
