@@ -143,11 +143,11 @@ void	draw(t_map *map_cpy, t_data data)
 	i = 0;
 	points = malloc(sizeof(t_point *) * map_cpy->height);
 	//call check_malloc function
-	if (!points)
+	/*if (!points)
 	{
 		free_split(splitted_line);
 		return NULL;
-	}
+	}*/
 	while (current)
 	{
 		points[i] = line_to_points(current->line, map_cpy->width, i);
@@ -167,7 +167,7 @@ void	draw(t_map *map_cpy, t_data data)
 				mlx_pixel_put(data.mlx_ptr, data.win_ptr, points[i][j].x, points[i][j].y, 0xFFFFFF);
 			if (j < map_cpy->width - 1)
 				ft_xiaolin_wu(points[i][j], points[i][j + 1], data);
-			if (j < map_cpy->height- 1)
+			if (i < map_cpy->height- 1)
 				ft_xiaolin_wu(points[i][j], points[i + 1][j], data);
 			j++;
 		}
