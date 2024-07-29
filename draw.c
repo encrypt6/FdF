@@ -22,6 +22,7 @@ float rfpart(float x)
 	return(1.0 - fpart(x));
 }
 
+//put in libft
 void ft_swap(int *a, int *b)
 {
 	int temp;
@@ -39,6 +40,7 @@ void plot(t_data data, int x, int y, float brightness)
 
 void ft_xiaolin_wu(t_point p0, t_point p1, t_data data)
 {
+	//put this in xiaolin_struct
 	int	steep;
 	float	dx;
 	float	dy;
@@ -53,7 +55,7 @@ void ft_xiaolin_wu(t_point p0, t_point p1, t_data data)
 	int	ypxl2;
 	int	x;
 
-
+	//little function
 	steep = abs(p1.y - p0.y) > abs(p1.x - p0.x);
 	if (steep)
 	{
@@ -65,6 +67,7 @@ void ft_xiaolin_wu(t_point p0, t_point p1, t_data data)
 		ft_swap(&p0.x, &p1.x);
 		ft_swap(&p0.y, &p1.y);
 	}
+	//little function
 	dx = (float)p1.x - (float)p0.x;
 	dy = (float)p1.y - (float)p0.y;
 	gradient = dy / dx;
@@ -83,6 +86,7 @@ void ft_xiaolin_wu(t_point p0, t_point p1, t_data data)
 		plot(data, xpxl1, ypxl1, rfpart(yend) * xgap);
 		plot(data, xpxl1, ypxl1 + 1, fpart(yend) * xgap);
 	}
+	//little function
 	intery = yend + gradient;
 	xend = roundf(p1.x);
 	yend = p1.y + gradient * (xend - p1.x);
@@ -99,6 +103,7 @@ void ft_xiaolin_wu(t_point p0, t_point p1, t_data data)
 		plot(data, xpxl2, ypxl2, rfpart(yend) * xgap);
 		plot(data, xpxl2, ypxl2 + 1, fpart(yend) * xgap);
 	}
+	//little function
 	x = xpxl1 + 1;
 	if(steep)
 	{
@@ -149,6 +154,9 @@ void	draw(t_map *map_cpy, t_data data)
 {
 	t_map	*current;
 	t_point **points;
+	t_point	iso_points;
+	t_point	next_iso_points;
+	t_point	below_iso_points;
 	int	i;
 	int	j;
 
@@ -175,11 +183,14 @@ void	draw(t_map *map_cpy, t_data data)
 		while (j < map_cpy->width)
 		{
 			printf("Drawing point at (%d, %d)\n", points[i][j].x, points[i][j].y);
-			if (points[i][j].x >= 0 && points[i][j].x < WINDOW_WIDTH &&
-				points[i][j].y >= 0 && points[i][j].y < WINDOW_HEIGHT)
-				mlx_pixel_put(data.mlx_ptr, data.win_ptr, points[i][j].x, points[i][j].y, 0xFFFFFF);
+			//iso_points = isometric(points[i][j]);
+			if (iso_points.x >= 0 && iso_points.x < WINDOW_WIDTH &&
+				iso_points.y >= 0 && iso_points.y < WINDOW_HEIGHT)
+				mlx_pixel_put(data.mlx_ptr, data.win_ptr, iso_points.x, iso_points.y, 0xFFFFFF);
 			if (j < map_cpy->width - 1)
+			{
 				ft_xiaolin_wu(points[i][j], points[i][j + 1], data);
+			}
 			if (i < map_cpy->height- 1)
 				ft_xiaolin_wu(points[i][j], points[i + 1][j], data);
 			j++;
