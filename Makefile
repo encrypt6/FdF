@@ -17,7 +17,7 @@ NAME = fdf
 
 MAIN_SRC = main.c
 
-SRCS = errors_management.c launch_fdf.c key_hook_utils.c free_utils.c map_utils.c cpy_map_to_list.c draw.c 
+SRCS = errors_management.c launch_fdf.c key_hook_utils.c free_utils.c map_utils.c cpy_map_to_list.c draw.c ft_xiaolin_wu.c isometric.c 
 
 LIBFT_PATH = libft
 MINILIBX_PATH = minilibx-linux
