@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 21:23:06 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/25 21:24:43 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/01 14:08:40 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_map	*create_nodes(char *line)
 	}
 	node->line = line;
 	node->next = NULL;
-//	printf("Created node with line: %s\n", line);
 	return (node);
 }
 
@@ -33,15 +32,16 @@ t_map	*get_lines_to_list(char *map_file, int height)
 	t_map	*map_cpy;
 	t_map	*current;
 	t_map	*new_node;
-	int	fd;
+	int		fd;
 	char	*line;
-	int	i;
+	int		i;
 
 	fd = open(map_file, O_RDONLY);
 	map_cpy = NULL;
 	i = 0;
-	while (i < height && (line = get_next_line(fd)))
+	while (i < height)
 	{
+		line = get_next_line(fd);
 		new_node = create_nodes(line);
 		if (!new_node)
 			return (close(fd), NULL);
@@ -75,5 +75,5 @@ t_map	*cpy_map_to_list(char *map_file)
 		free(map_cpy);
 		return (NULL);
 	}
-	return(map_cpy);
+	return (map_cpy);
 }

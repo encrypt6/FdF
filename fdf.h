@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/25 18:55:57 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/01 14:37:18 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 650
 # define ESC_KEY 65307
-# define SCALE_X 1
-# define SCALE_Y 1
+# define SCALE_X 4
+# define SCALE_Y 4
 
 # include "libft/libft.h"
 # include <math.h>
@@ -27,19 +27,19 @@
 
 typedef struct	s_xiao
 {
-	int	steep;
+	int		steep;
 	float	dx;
 	float	dy;
 	float	gradient;
 	float	xend;
 	float	yend;
 	float	xgap;
-	int	xpxl1;
-	int	ypxl1;
+	int		xpxl1;
+	int		ypxl1;
 	float	intery;
-	int	xpxl2;
-	int	ypxl2;
-	int	x;
+	int		xpxl2;
+	int		ypxl2;
+	int		x;
 }t_xiao;
 
 typedef struct	s_point
@@ -51,13 +51,11 @@ typedef struct	s_point
 
 typedef struct	s_map
 {
-	int		height;
-	int		width;
+	int				height;
+	int				width;
 	struct s_map	*head;
 	struct s_map	*next;
 	char			*line;
-	int				x;
-	int				y;
 }t_map;
 
 typedef struct	s_data
