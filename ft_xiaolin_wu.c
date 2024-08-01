@@ -22,15 +22,6 @@ float rfpart(float x)
 	return(1.0 - fpart(x));
 }
 
-//put in libft
-void ft_swap(int *a, int *b)
-{
-	int temp;
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
 void plot(t_data data, int x, int y, float brightness)
 {
 	int color;

@@ -121,5 +121,5 @@ char			*ft_read_file(int fd, char *line);
 char			*ft_first_line(char *buffer);
 int				ft_getcountline(char *s);
 
-
+void			ft_swap(int *a, int *b);
 #endif
