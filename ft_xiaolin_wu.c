@@ -6,114 +6,115 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:08:47 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/25 19:03:09 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:01:29 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-float fpart(float x)
+float	fpart(float x)
 {
-	return(x - floorf(x));
+	return (x - floorf(x));
 }
 
-float rfpart(float x)
+float	rfpart(float x)
 {
-	return(1.0 - fpart(x));
+	return (1.0 - fpart(x));
 }
 
-void plot(t_data data, int x, int y, float brightness)
+void	plot(t_data data, int x, int y, float brightness)
 {
-	int color;
-	color = (int)(brightness * 255) << 16 | (int)(brightness * 255) << 8 | (int)(brightness * 255);
+	int	color;
+
+	color = (int)(brightness * 255) << 16
+		| (int)(brightness * 255) << 8
+		| (int)(brightness * 255);
 	mlx_pixel_put(data.mlx_ptr, data.win_ptr, x, y, color);
 }
 
-void ft_xiaolin_wu(t_point p0, t_point p1, t_data data)
+void	second_point(t_point *p1, t_xiao *xiao, t_data *data)
 {
-	//put this in xiaolin_struct
-	int	steep;
-	float	dx;
-	float	dy;
-	float	gradient;
-	float	xend;
-	float	yend;
-	float	xgap;
-	int	xpxl1;
-	int	ypxl1;
-	float	intery;
-	int	xpxl2;
-	int	ypxl2;
-	int	x;
+	xiao->intery = xiao->yend + xiao->gradient;
+	xiao->xend = roundf(p1->x);
+	xiao->yend = p1->y + xiao->gradient * (xiao->xend - p1->x);
+	xiao->xgap = fpart(p1->x + 0.5);
+	xiao->xpxl2 = xiao->xend;
+	xiao->ypxl2 = (int)xiao->yend;
+	if (xiao->steep)
+	{
+		plot(*data, xiao->ypxl2, xiao->xpxl2, rfpart(xiao->yend) * xiao->xgap);
+		plot(*data, xiao->ypxl2 + 1, xiao->xpxl2, fpart(xiao->yend) * xiao->xgap);
+	}
+	else
+	{
+		plot(*data, xiao->xpxl2, xiao->ypxl2, rfpart(xiao->yend) * xiao->xgap);
+		plot(*data, xiao->xpxl2, xiao->ypxl2 + 1, fpart(xiao->yend) * xiao->xgap);
+	}
+}
+void	first_point(t_point *p0, t_point *p1, t_xiao *xiao, t_data *data)
+{
+	xiao->dx = (float)p1->x - (float)p0->x;
+	xiao->dy = (float)p1->y - (float)p0->y;
+	xiao->gradient = xiao->dy / xiao->dx;
+	xiao->xend = roundf(p0->x);
+	xiao->yend = p0->y + xiao->gradient * (xiao->xend - p0->x);
+	xiao->xgap = rfpart(p0->x + 0.5);
+	xiao->xpxl1 = xiao->xend;
+	xiao->ypxl1 = (int)xiao->yend;
+	if (xiao->steep)
+	{
+		plot(*data, xiao->ypxl1, xiao->xpxl1, rfpart(xiao->yend) * xiao->xgap);
+		plot(*data, xiao->ypxl1 + 1, xiao->xpxl1, fpart(xiao->yend) * xiao->xgap);
+	}
+	else
+	{
+		plot(*data, xiao->xpxl1, xiao->ypxl1, rfpart(xiao->yend) * xiao->xgap);
+		plot(*data, xiao->xpxl1, xiao->ypxl1 + 1, fpart(xiao->yend) * xiao->xgap);
+	}
+}
 
-	//little function
-	steep = abs(p1.y - p0.y) > abs(p1.x - p0.x);
-	if (steep)
+void	steepness(t_point *p0, t_point *p1, t_xiao *xiao)
+{
+	xiao->steep = abs(p1->y - p0->y) > abs(p1->x - p0->x);
+	if (xiao->steep)
 	{
-		ft_swap(&p0.x, &p0.y);
-		ft_swap(&p1.x, &p1.y);
+		ft_swap(&p0->x, &p0->y);
+		ft_swap(&p1->x, &p1->y);
 	}
-	if (p0.x > p1.x)
+	if (p0->x > p1->x)
 	{
-		ft_swap(&p0.x, &p1.x);
-		ft_swap(&p0.y, &p1.y);
+		ft_swap(&p0->x, &p1->x);
+		ft_swap(&p0->y, &p1->y);
 	}
-	//little function
-	dx = (float)p1.x - (float)p0.x;
-	dy = (float)p1.y - (float)p0.y;
-	gradient = dy / dx;
-	xend = roundf(p0.x);
-	yend = p0.y + gradient * (xend - p0.x);
-	xgap = rfpart(p0.x + 0.5);
-	xpxl1 = xend;
-	ypxl1 = (int)yend;
-	if(steep)
+}
+
+void	ft_xiaolin_wu(t_point p0, t_point p1, t_data data)
+{
+	t_xiao	xiao;
+	steepness(&p0, &p1, &xiao);
+	set_first_point(&p0, &p1, &xiao, &data);
+	set_second_point(&p1, &xiao, &data);
+
+		//little function
+	xiao.x = xiao.xpxl1 + 1;
+	if (xiao.steep)
 	{
-		plot(data, ypxl1, xpxl1, rfpart(yend) * xgap);
-		plot(data, ypxl1 + 1, xpxl1, fpart(yend) * xgap);
-	}
-	else
-	{
-		plot(data, xpxl1, ypxl1, rfpart(yend) * xgap);
-		plot(data, xpxl1, ypxl1 + 1, fpart(yend) * xgap);
-	}
-	//little function
-	intery = yend + gradient;
-	xend = roundf(p1.x);
-	yend = p1.y + gradient * (xend - p1.x);
-	xgap = fpart(p1.x + 0.5);
-	xpxl2 = xend;
-	ypxl2 = (int)yend;
-	if(steep)
-	{
-		plot(data, ypxl2, xpxl2, rfpart(yend) * xgap);
-		plot(data, ypxl2 + 1, xpxl2, fpart(yend) * xgap);
-	}
-	else
-	{
-		plot(data, xpxl2, ypxl2, rfpart(yend) * xgap);
-		plot(data, xpxl2, ypxl2 + 1, fpart(yend) * xgap);
-	}
-	//little function
-	x = xpxl1 + 1;
-	if(steep)
-	{
-		while(x < xpxl2)
+		while (xiao.x < xiao.xpxl2)
 		{
-			plot(data, (int)intery, x, rfpart(intery));
-			plot(data, (int)intery + 1, x, fpart(intery));
-			intery += gradient;
-			x++;
+			plot(data, (int)xiao.intery, xiao.x, rfpart(xiao.intery));
+			plot(data, (int)xiao.intery + 1, xiao.x, fpart(xiao.intery));
+			xiao.intery += xiao.gradient;
+			xiao.x++;
 		}
 	}
 	else
 	{
-		while(x < xpxl2)
+		while (xiao.x < xiao.xpxl2)
 		{
-			plot(data, x, (int)intery, rfpart(intery));
-			plot(data, x, (int)intery + 1, fpart(intery));
-			intery += gradient;
-			x++;
+			plot(data, xiao.x, (int)xiao.intery, rfpart(xiao.intery));
+			plot(data, xiao.x, (int)xiao.intery + 1, fpart(xiao.intery));
+			xiao.intery += xiao.gradient;
+			xiao.x++;
 		}
 	}
 }
