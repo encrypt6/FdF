@@ -12,14 +12,41 @@
 
 #include "fdf.h"
 
+void	put_pixels(t_img *img, int x, int y, int color)
+{
+	char	*pixel;
+
+	if (x < 0 || x >= WINDOW_WIDTH || y >= WINDOW_HEIGHT)
+		return ;
+	pixel = img->data + (y * img->size_line + x * (img->bpp / 8));
+	*(unsigned int *)pixel = color;
+}
+
+t_img	*init_img(t_data *data, int win_width, int win_height)
+{
+	t_img	*img;
+	int	endian;
+
+	img = malloc(sizeof(t_img));
+	if (!img)
+		return (NULL);
+	img->image = mlx_new_image(data->mlx_ptr, win_width, win_height);
+	img->data = mlx_get_data_addr(img->image, &img->bpp, &img->size_line, &endian);
+	img->width = win_width;
+	img->height = win_height;
+	return (img);
+}
+
 void	points_linking(t_data data, t_map *map_cpy, t_point **points)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 	t_point	iso_points;
 	t_point	next_iso_points;
 	t_point	below_iso_points;
-
+	t_img *img;
+	
+	img = init_img(&data, WINDOW_WIDTH, WINDOW_HEIGHT);
 	i = 0;
 	while (i < map_cpy->height)
 	{
@@ -30,24 +57,26 @@ void	points_linking(t_data data, t_map *map_cpy, t_point **points)
 					map_cpy->height);
 			if (iso_points.x >= 0 && iso_points.x < WINDOW_WIDTH
 				&& iso_points.y >= 0 && iso_points.y < WINDOW_HEIGHT)
-				mlx_pixel_put(data.mlx_ptr, data.win_ptr,
-					iso_points.x, iso_points.y, 0xFFFFFF);
+				put_pixels(img, iso_points.x, iso_points.y, 0xFFFFFF);
 			if (j < map_cpy->width - 1)
 			{
 				next_iso_points = isometric(points[i][j + 1],
 						map_cpy->width, map_cpy->height);
-				ft_xiaolin_wu(iso_points, next_iso_points, data);
+				ft_xiaolin_wu(iso_points, next_iso_points, img);
 			}
 			if (i < map_cpy->height - 1)
 			{
 				below_iso_points = isometric(points[i + 1][j],
 						map_cpy->width, map_cpy->height);
-				ft_xiaolin_wu(iso_points, below_iso_points, data);
+				ft_xiaolin_wu(iso_points, below_iso_points, img);
 			}
 			j++;
 		}
 		i++;
 	}
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img->image, 0, 0);
+	mlx_destroy_image(data.mlx_ptr, img->image);
+	free(img);
 }
 
 t_point	*line_to_points(char *line, int width, int row)
@@ -79,7 +108,7 @@ void	draw(t_map *map_cpy, t_data data)
 {
 	t_map	*current;
 	t_point	**points;
-	int		i;
+	int	i;
 
 	current = map_cpy->next;
 	i = 0;

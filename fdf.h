@@ -17,13 +17,22 @@
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 650
 # define ESC_KEY 65307
-# define SCALE_X 4
-# define SCALE_Y 4
+# define SCALE_X 1
+# define SCALE_Y 1
 
 # include "libft/libft.h"
 # include <math.h>
 # include "minilibx-linux/mlx_int.h"
 # include "minilibx-linux/mlx.h"
+
+/*typedef struct s_img
+{
+	void	*img_ptr;
+	char	*data;
+	int	bpp;
+	int	size_line;
+	int	endian;
+}t_img;*/
 
 typedef struct	s_xiao
 {
@@ -90,6 +99,6 @@ void	draw(t_map *map_cpy, t_data data);
 //view.c
 t_point	isometric(t_point point, int map_width, int map_height);
 
-void ft_xiaolin_wu(t_point p0, t_point p1, t_data data);
+void ft_xiaolin_wu(t_point p0, t_point p1, t_img *img);
 
 #endif
