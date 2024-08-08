@@ -6,35 +6,35 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:25:45 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/25 18:59:58 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/09 00:56:52 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-/*void	print_first_value(t_map *head)
-{
-	if (head && head->line)
-		printf("first val is %s\n", head->line);
-	else
-		printf("Empty\n");
-}*/
-
 void	launch_fdf(char *map_file)
 {
-	t_data	data;
+	t_data	*data;
 	t_map *map_cpy;
 
-	map_cpy = cpy_map_to_list(map_file);
-	
-	if (!map_cpy)
+	data = malloc(sizeof(t_data));
+	if (!data)
 	{
 		perror("Error");
 		exit(1);
 	}
-	data.mlx_ptr = mlx_init();
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "My FdF");
-	mlx_key_hook(data.win_ptr, key_hook, NULL);
+	map_cpy = cpy_map_to_list(map_file);
+	if (!map_cpy)
+	{
+		perror("Error");
+		free(data);
+		exit(1);
+	}
+	data->mlx_ptr = mlx_init();
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "My FdF");
 	draw(map_cpy, data);
-	mlx_loop(data.mlx_ptr);
+	mlx_key_hook(data->win_ptr, esc_exit, data);
+	mlx_hook(data->win_ptr, 17, 0, close_window, data);
+
+	mlx_loop(data->mlx_ptr);
 }
