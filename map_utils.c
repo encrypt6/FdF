@@ -6,25 +6,11 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:54:48 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/25 18:52:05 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/09 23:03:05 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	free_map(t_map *map)
-{
-	t_map	*temp;
-
-	while (map != NULL)
-	{
-		temp = map;
-		map = map->next;
-		if (temp->line)
-			free(temp->line);
-		free(temp);
-	}
-}
 
 int	get_width(char *map_file)
 {

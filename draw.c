@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:08:47 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/08 23:59:42 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/09 01:34:36 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ void	draw(t_map *map_cpy, t_data *data)
 	i = 0;
 	points = malloc(sizeof(t_point *) * map_cpy->height);
 	if (!points)
-		return ;
+	{
+		perror("Error:");
+		exit(1);
+	}
 	while (current)
 	{
 		points[i] = line_to_points(current->line, map_cpy->width, i);

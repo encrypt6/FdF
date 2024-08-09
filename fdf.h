@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/09 00:31:46 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/10 00:04:12 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 650
 # define ESC_KEY 65307
-# define SCALE_X 4
-# define SCALE_Y 4
+# define SCALE_X 2
+# define SCALE_Y 2
 
 # include "libft/libft.h"
 # include <math.h>
@@ -116,11 +116,11 @@ void	clean_img(t_data *data, t_img *img);
 
 t_point *line_to_points(char *line, int width, int row); 
 
-void		clean_exit(t_data *data);
+void		clean_exit(t_data *data, t_map *map_cpy);
 
 
-int		close_window(t_data *data);
+int		close_window(t_data *data, t_map *map_cpy);
 
 
-int		esc_exit(int keycode, t_data *data);
+int		esc_exit(int keycode, t_data *data, t_map *map_cpy);
 #endif

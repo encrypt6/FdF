@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 21:23:06 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/01 14:08:40 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/09 23:22:38 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_map	*create_nodes(char *line)
 	if (!node)
 	{
 		perror("Error");
-		return (NULL);
+		exit(1);
 	}
 	node->line = line;
 	node->next = NULL;
@@ -42,9 +42,14 @@ t_map	*get_lines_to_list(char *map_file, int height)
 	while (i < height)
 	{
 		line = get_next_line(fd);
+		if (!line)
+            return (close(fd), free_map(map_cpy), NULL);
 		new_node = create_nodes(line);
 		if (!new_node)
-			return (close(fd), NULL);
+		{
+			free(line);
+			return (close(fd), free_map(map_cpy),  NULL);
+		}
 		if (!map_cpy)
 			map_cpy = new_node;
 		else
@@ -64,7 +69,7 @@ t_map	*cpy_map_to_list(char *map_file)
 	if (!map_cpy)
 	{
 		perror("Error");
-		exit(EXIT_FAILURE);
+		exit(1);
 	}
 	map_cpy->height = get_height(map_file);
 	map_cpy->width = get_width(map_file);

@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:54:16 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/16 14:57:00 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/09 22:50:21 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[j])
 		result[i++] = s2[j++];
 	result[i] = '\0';
-	free(s1);
+//	free(s1);
 	return (result);
 }

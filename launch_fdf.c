@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:25:45 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/09 00:56:52 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/10 00:11:31 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ void	launch_fdf(char *map_file)
 	draw(map_cpy, data);
 	mlx_key_hook(data->win_ptr, esc_exit, data);
 	mlx_hook(data->win_ptr, 17, 0, close_window, data);
-
 	mlx_loop(data->mlx_ptr);
 }

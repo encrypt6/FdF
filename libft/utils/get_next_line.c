@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:42:52 by elsikira          #+#    #+#             */
-/*   Updated: 2024/07/25 18:47:29 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/09 22:47:08 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,10 @@ int	ft_getcountline(char *s)
 	count = 0;
 	if (!s)
 		return (count);
-	while (*s && *s != '\n')
-	{
+	while (s[count] && s[count] != '\n')
 		count++;
-		s++;
-	}
 	return (count);
 }
-/* char	*ft_newline : function to get the new line 
-[1] : i is the count of buffer until the '\n'
-[2] if buffer[i] equals to 0, free and return NULL
-[3] :  
-skips the first one 
-already read with a ft_calloc of the length of buffer 
-(ft_strlen(buffer)), minus i (what is already read)
-and last character + 1*/
 
 char	*ft_new_line(char *buffer)
 {
@@ -42,31 +31,18 @@ char	*ft_new_line(char *buffer)
 	char		*new_line;
 
 	i = ft_getcountline(buffer);
-	j = 0;
-	if (buffer[i] == 0)
-		return (free(buffer), NULL);
-	new_line = ft_calloc((ft_strlen(buffer) - i + 1), 1);
+	if (buffer[i] == '\0')
+		return(free(buffer), NULL);
+	new_line = ft_calloc((ft_strlen(buffer) - i), sizeof(char));
 	if (!new_line)
 		return (NULL);
 	i++;
+	j = 0;	
 	while (buffer[i])
 		new_line[j++] = buffer[i++];
+	new_line[j] = '\0';
 	return (free(buffer), new_line);
 }
-
-/*char	*ft_first_line : function to get the first line
-[1] : if buffer is empty or equals to a '\0', 
-returns NULL
-[2] : line equals to a calloc of the len of 
-buffer, + '\n' and '\0'
-[3] : if line is empty, returns NULL
-[4] : while buffer at n bytes read is true and 
-isn't equal to '\n',
-buffer becomes line and bytes read iterate.
-[5] : if buffer at n bytes read is true and 
-equals a '\n', line is at bytes read = '\n'
-[6] : returns the line
-*/
 
 char	*ft_first_line(char *buffer)
 {
@@ -76,7 +52,7 @@ char	*ft_first_line(char *buffer)
 	bytes_read = 0;
 	if (!buffer || *buffer == '\0')
 		return (NULL);
-	line = ft_calloc(ft_getcountline(buffer) + 2, 1);
+	line = ft_calloc(ft_getcountline(buffer) + 2, sizeof(char));
 	if (!line)
 		return (NULL);
 	while (buffer[bytes_read] && buffer[bytes_read] != '\n')
@@ -84,39 +60,32 @@ char	*ft_first_line(char *buffer)
 		line[bytes_read] = buffer[bytes_read];
 		bytes_read++;
 	}
-	if (buffer[bytes_read] && buffer[bytes_read] == '\n')
+	if (buffer[bytes_read] == '\n')
 		line[bytes_read] = '\n';
 	return (line);
 }
-/* char	*ft_read_file : function to read the fds
-[1] : ft_calloc if !file, ie it allocates a fixed 
-amount of memory and initializes it to zero.
-[2] : malloc the BUFFER_SIZE + last character. 
-[3] : if number of bytes is -1, must free line and 
-buffer and return NULL. 
-[4] : puts a '\0' at the end of buffer then calls 
-ft_strjoin_free to join the buffer to the line.
-[5] : as usual, if line is null, return NULL.
-[6] : strchr searching a '\n', if it finds one, break.
-[7] : free the buffer and returns the line*/
 
 char	*ft_read_file(int fd, char *line)
 {
 	int		bytes_read;
 	char	*buffer;
+	char *temp;
 
-	bytes_read = 1;
 	if (!line)
-		line = ft_calloc(1, 1);
+		line = ft_calloc(1, sizeof(char));
 	buffer = malloc(BUFFER_SIZE + 1);
-
+	if (!buffer)
+		return (NULL);
+	bytes_read = 1;
 	while (bytes_read > 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 			return (free(line), free(buffer), NULL);
 		buffer[bytes_read] = '\0';
-		line = ft_strjoin(line, buffer);
+		temp = ft_strjoin(line, buffer);
+		free(line);
+		line = temp;
 		if (!line)
 			return (NULL);
 		if (ft_strchr(buffer, '\n'))
@@ -124,14 +93,6 @@ char	*ft_read_file(int fd, char *line)
 	}
 	return (free(buffer), line);
 }
-/*char	*get_next_line : 
-[1] : manages two cases : if the fd is invalid (== -1) 
-or if BUFFER_SIZE isnt strictly positive, it returns NULL.
-[2] : calls the function ft_read_file to read the file descriptor
-[3] : if the reading fails, returns NULL.
-[4] : then, line is equal to ft_get_first_line(buffer[fd])
-[5] : buffer[fd] equals to ft_new_line
-[6] : gnl returns line.*/
 
 char	*get_next_line(int fd)
 {

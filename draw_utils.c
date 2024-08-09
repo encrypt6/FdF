@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:03:57 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/07 15:12:06 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/09 01:36:01 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_point	*line_to_points(char *line, int width, int row)
 	if (!points)
 	{
 		free_split(splitted_line);
-		return (NULL);
+		perror("Error");
+		exit(1);
 	}
 	i = 0;
 	while (i < width)
