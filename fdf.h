@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/10 00:04:12 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:43:38 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,11 @@ void	clean_img(t_data *data, t_img *img);
 
 t_point *line_to_points(char *line, int width, int row); 
 
-void		clean_exit(t_data *data, t_map *map_cpy);
+void		clean_exit(t_data *data);
 
 
-int		close_window(t_data *data, t_map *map_cpy);
+int		close_window(t_data *data);
 
 
-int		esc_exit(int keycode, t_data *data, t_map *map_cpy);
+int		esc_exit(int keycode, t_data *data);
 #endif
