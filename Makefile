@@ -6,7 +6,7 @@
 #    By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 14:39:19 by elsikira          #+#    #+#              #
-#    Updated: 2024/08/08 23:28:11 by elsikira         ###   ########.fr        #
+#    Updated: 2024/08/12 22:21:47 by elsikira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = fdf
 
 MAIN_SRC = main.c
 
-SRCS = errors_management.c launch_fdf.c free_utils.c map_utils.c cpy_map_to_list.c draw.c ft_xiaolin_wu.c isometric.c img_utils.c draw_utils.c clean_exit.c 
+SRCS = errors_management.c launch_fdf.c free_utils.c map_utils.c cpy_map_to_list.c draw.c ft_xiaolin_wu.c ft_xiaolin_wu_utils.c isometric.c img_utils.c draw_utils.c clean_exit.c 
 
 LIBFT_PATH = libft
 MINILIBX_PATH = minilibx-linux

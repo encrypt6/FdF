@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 20:21:13 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/12 23:27:42 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 650
 # define ESC_KEY 65307
-# define SCALE_X 2
-# define SCALE_Y 2
+# define SCALE_X 3.5
+# define SCALE_Y 3.5
 
 # include "libft/libft.h"
 # include <math.h>
@@ -119,6 +119,12 @@ void	draw(t_map *map_cpy, t_data *data);
 t_point	isometric(t_point point, int map_width, int map_height);
 
 void	ft_xiaolin_wu(t_point p0, t_point p1, t_img *img);
+
+float	fpart(float x);
+
+float	rfpart(float x);
+
+void	plot(t_img *img, int x, int y, float brightness);
 
 t_img	*init_img(t_data *data, int win_width, int win_height);
 

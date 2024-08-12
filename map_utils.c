@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:54:48 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 16:33:55 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/12 22:12:46 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	get_height(char *map_file)
 	int		fd;
 	char	*abs;
 
-//	initialize_buffer(buffer, BUFFER_SIZE);
 	map.height = 0;
 	fd = open(map_file, O_RDONLY);
 	while (1)
@@ -51,7 +50,7 @@ int	get_height(char *map_file)
 		map.height++;
 		free (abs);
 		abs = NULL;
-	}	
+	}
 	close(fd);
-	return(map.height);
+	return (map.height);
 }
