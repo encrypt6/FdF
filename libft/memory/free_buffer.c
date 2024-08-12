@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   free_buffer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 16:54:16 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 20:05:09 by elsikira         ###   ########.fr       */
+/*   Created: 2024/08/12 19:55:52 by elsikira          #+#    #+#             */
+/*   Updated: 2024/08/12 19:59:01 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+void	free_buffer(char **buffer)
 {
-	char	*result;
-	size_t	i;
-	size_t	j;
+	int	i;
 
-	if (!s1 || !s2)
-		return (NULL);
 	i = 0;
-	j = 0;
-	result = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!result)
-		return (NULL);
-	while (s1[i])
+	while (i < 1024)
 	{
-		result[i] = s1[i];
+		if (buffer[i])
+		{
+			free(buffer[i]);
+			buffer[i] = (NULL);
+		}
 		i++;
 	}
-	while (s2[j])
-		result[i++] = s2[j++];
-	result[i] = '\0';
-	return (result);
 }

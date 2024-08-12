@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:38:25 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 18:44:58 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:06:22 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_data(t_data *data)
 			if (data->win_ptr)
 				mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 			mlx_destroy_display(data->mlx_ptr);
-			free(data->mlx_ptr);	
+			free(data->mlx_ptr);
 		}
 		free(data);
 	}
@@ -48,4 +48,3 @@ int	esc_exit(int keycode, t_data *data)
 		clean_exit(data);
 	return (0);
 }
-

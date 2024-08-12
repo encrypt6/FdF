@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 18:43:38 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:21:13 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,18 @@
 # include "minilibx-linux/mlx_int.h"
 # include "minilibx-linux/mlx.h"
 
-typedef struct	s_xiao
+typedef struct s_iso
+{
+	double	angle;
+	int		offset_x;
+	int		offset_y;
+	double	center_x;
+	double	center_y;
+	double	iso_center_x;
+	double	iso_center_y;
+}	t_iso;
+
+typedef struct s_xiao
 {
 	int		steep;
 	float	dx;
@@ -40,46 +51,46 @@ typedef struct	s_xiao
 	int		xpxl2;
 	int		ypxl2;
 	int		x;
-}t_xiao;
+}	t_xiao;
 
-typedef struct	s_point
+typedef struct s_point
 {
 	int	x;
 	int	y;
 	int	z;
-}t_point;
+}	t_point;
 
 typedef struct s_params
 {
-	t_img *img;
+	t_img	*img;
 	t_point	**points;
-	int	width;
-	int	height;
-}t_params;
+	int		width;
+	int		height;
+}	t_params;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	int				height;
 	int				width;
 	struct s_map	*head;
 	struct s_map	*next;
 	char			*line;
-}t_map;
+}	t_map;
 
-typedef struct	s_draw
+typedef struct s_draw
 {
 	t_map	*map_cpy;
-	t_point **points;
+	t_point	**points;
 	t_img	*img;
 	int		i;
 	int		j;
-}t_draw;
+}	t_draw;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-}t_data;
+}	t_data;
 
 int		main(int argc, char **argv);
 
@@ -93,9 +104,9 @@ void	free_split(char **split);
 
 t_map	*cpy_map_to_list(char *map_file);
 
-int	get_width(char *map_file);
+int		get_width(char *map_file);
 
-int	get_height(char *map_file);
+int		get_height(char *map_file);
 
 void	fill_matrix(t_map *map_cpy);
 
@@ -105,22 +116,19 @@ void	free_points(int height, t_point **points);
 
 void	draw(t_map *map_cpy, t_data *data);
 
-//view.c
 t_point	isometric(t_point point, int map_width, int map_height);
 
-void ft_xiaolin_wu(t_point p0, t_point p1, t_img *img);
+void	ft_xiaolin_wu(t_point p0, t_point p1, t_img *img);
 
 t_img	*init_img(t_data *data, int win_width, int win_height);
 
 void	clean_img(t_data *data, t_img *img);
 
-t_point *line_to_points(char *line, int width, int row); 
+t_point	*line_to_points(char *line, int width, int row);
 
-void		clean_exit(t_data *data);
-
+void	clean_exit(t_data *data);
 
 int		close_window(t_data *data);
-
 
 int		esc_exit(int keycode, t_data *data);
 #endif

@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:08:47 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 17:44:09 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:16:36 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ void	process_lines(t_params *params, int i, int j)
 	iso = isometric(params->points[i][j], params->width, params->height);
 	if (j < params->width - 1)
 	{
-		next = isometric(params->points[i][j + 1], params->width, params->height);
+		next = isometric(params->points[i][j + 1], params->width,
+				params->height);
 		ft_xiaolin_wu(iso, next, params->img);
 	}
 	if (i < params->height - 1)
 	{
-		below = isometric(params->points[i + 1][j], params->width, params->height);
+		below = isometric(params->points[i + 1][j], params->width,
+				params->height);
 		ft_xiaolin_wu(iso, below, params->img);
 	}
 }
@@ -45,16 +47,18 @@ void	process_points(t_params *params, int i, int j)
 {
 	t_point	iso;
 
-	iso = isometric(params->points[i][j], params->width, params->height);
-	if (iso.x >= 0 && iso.x < WINDOW_WIDTH && iso.y >= 0 && iso.y < WINDOW_HEIGHT)
+	iso = isometric(params->points[i][j], params->width,
+			params->height);
+	if (iso.x >= 0 && iso.x < WINDOW_WIDTH && iso.y >= 0
+		&& iso.y < WINDOW_HEIGHT)
 		put_pixels(params->img, iso.x, iso.y, 0xFFFFFF);
 }
 
 void	points_linking(t_map *map_cpy, t_point **points, t_img *img)
 {
 	t_params	params;
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 
 	params.img = img;
 	params.points = points;
@@ -76,11 +80,11 @@ void	points_linking(t_map *map_cpy, t_point **points, t_img *img)
 
 void	draw(t_map *map_cpy, t_data *data)
 {
-	t_img *img;
+	t_img	*img;
 	t_map	*current;
 	t_point	**points;
 	int		i;
-	
+
 	img = init_img(data, WINDOW_WIDTH, WINDOW_HEIGHT);
 	current = map_cpy->next;
 	i = 0;

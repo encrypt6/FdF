@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:08:47 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/07 15:40:37 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:23:49 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	second_point(t_point *p1, t_xiao *xiao, t_img *img)
 		plot(img, xiao->xpxl2, xiao->ypxl2 + 1, fpart(xiao->yend) * xiao->xgap);
 	}
 }
+
 void	first_point(t_point *p0, t_point *p1, t_xiao *xiao, t_img *img)
 {
 	xiao->dx = (float)p1->x - (float)p0->x;
@@ -120,6 +121,7 @@ void	steepness(t_point *p0, t_point *p1, t_xiao *xiao)
 void	ft_xiaolin_wu(t_point p0, t_point p1, t_img *img)
 {
 	t_xiao	xiao;
+
 	steepness(&p0, &p1, &xiao);
 	first_point(&p0, &p1, &xiao, img);
 	second_point(&p1, &xiao, img);

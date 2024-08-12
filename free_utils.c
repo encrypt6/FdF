@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:53:06 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 17:53:09 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:21:32 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_map(t_map *map)
 {
 	t_map	*temp;
-	
+
 	while (map)
 	{
 		temp = map;

@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:42:16 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 16:33:37 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:04:47 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ size_t			ft_hexlen(unsigned int hex);
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 
-int     		ft_strcmp(const char *s1, const char *s2);
+int				ft_strcmp(const char *s1, const char *s2);
 
 char			*ft_strnstr(const char *big, const char *little, size_t len);
 
@@ -117,9 +117,14 @@ int				ft_dprintf(int fd, const char *formatt, ...);
 char			*get_next_line(int fd);
 
 char			*get_first_line(int fd);
+
 char			*ft_read_file(int fd, char *line);
+
 char			*ft_first_line(char *buffer);
+
 int				ft_getcountline(char *s);
 
 void			ft_swap(int *a, int *b);
+
+void			free_buffer(char **buffer);
 #endif
