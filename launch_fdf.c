@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:25:45 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 22:14:22 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:56:26 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	launch_fdf(char *map_file)
 	if (!map_cpy)
 	{
 		perror("Error");
+		free_map(map_cpy);
 		free(data);
 		exit(1);
 	}

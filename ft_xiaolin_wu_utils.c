@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 22:16:56 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 22:20:45 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/12 23:54:22 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ void	plot(t_img *img, int x, int y, float brightness)
 	offset = (y * img->size_line + x * (img->bpp / 8));
 	*(unsigned int *)(img->data + offset) = color;
 }
-

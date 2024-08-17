@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:42:52 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 20:02:58 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:51:42 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_new_line(char *buffer)
 		return (free(buffer), NULL);
 	new_line = ft_calloc((ft_strlen(buffer) - i), sizeof(char));
 	if (!new_line)
-		return (NULL);
+		return (free(buffer), NULL);
 	i++;
 	j = 0;
 	while (buffer[i])
@@ -75,7 +75,7 @@ char	*ft_read_file(int fd, char *line)
 		line = ft_calloc(1, sizeof(char));
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
-		return (NULL);
+		return (free(line), NULL);
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
@@ -84,10 +84,10 @@ char	*ft_read_file(int fd, char *line)
 			return (free(line), free(buffer), NULL);
 		buffer[bytes_read] = '\0';
 		temp = ft_strjoin(line, buffer);
+		if (!temp)
+			return (free(line), free(buffer), NULL);
 		free(line);
 		line = temp;
-		if (!line)
-			return (NULL);
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
