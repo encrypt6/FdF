@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 18:34:45 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 16:32:03 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/19 13:30:39 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ int	main(int argc, char **argv)
 {
 	check_all_errors(argc, argv);
 	launch_fdf(argv[1]);
+	return (0);
 }
