@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 19:53:06 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/12 20:21:32 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:38:36 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	free_map(t_map *map)
 		map = map->next;
 		free(temp);
 	}
+	free(map);
 }
 
 void	free_points(int height, t_point **points)

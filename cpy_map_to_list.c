@@ -6,7 +6,7 @@
 /*   By: elsikira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 21:23:06 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/17 18:42:01 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:09:31 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,19 @@ t_map	*cpy_map_to_list(char *map_file)
 {
 	t_map	*map_cpy;
 
-	map_cpy = malloc(sizeof(t_map));
+	map_cpy = ft_calloc(sizeof(t_map), 1);
 	if (!map_cpy)
 	{
 		perror("Error");
+		return (NULL);
 		exit(1);
 	}
 	map_cpy->height = get_height(map_file);
+	if (map_cpy->height == -1)
+		return (free_map(map_cpy), NULL);
 	map_cpy->width = get_width(map_file);
+	if (map_cpy->width == -1)
+		return (free_map(map_cpy), NULL);
 	map_cpy->line = NULL;
 	map_cpy->next = get_lines_to_list(map_file, map_cpy->height);
 	if (!map_cpy->next)
