@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:03:57 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/13 00:16:08 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:26:25 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_point	*line_to_points(char *line, int width, int row)
 	int		i;
 
 	splitted_line = ft_split(line, ' ');
-	points = malloc(sizeof(t_point) * width);
+	points = ft_calloc(sizeof(t_point) * width, 1);
 	if (!points)
 	{
 		free_split(splitted_line);
@@ -27,7 +27,7 @@ t_point	*line_to_points(char *line, int width, int row)
 		exit(1);
 	}
 	i = 0;
-	while (i < width)
+	while (i < width && splitted_line[i])
 	{
 		points[i].x = i * SCALE_X;
 		points[i].y = row * SCALE_Y;

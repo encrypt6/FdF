@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:25:45 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/20 14:22:24 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:57:42 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	launch_fdf(char *map_file)
 	map_cpy = cpy_map_to_list(map_file);
 	if (!map_cpy)
 	{
-		perror("Error");
+		ft_dprintf(STDERR_FILENO, "Error: failed to copy map\n");
 		free_map(map_cpy);
 		free(data);
 		exit(1);
