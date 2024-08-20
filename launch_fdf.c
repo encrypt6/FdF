@@ -6,17 +6,29 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:25:45 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/19 16:50:28 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:22:24 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	init(t_data *data)
+void	init(t_data *data, t_map *map_cpy)
 {
 	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+	{
+		ft_dprintf(STDERR_FILENO, "Error: mlx_init() failed\n");
+		free_map(map_cpy);
+		exit(1);
+	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr,
 			WINDOW_WIDTH, WINDOW_HEIGHT, "My FdF");
+	if (!data->win_ptr)
+	{
+		ft_dprintf(STDERR_FILENO, "Error: mlx_new_window() failed\n");
+		free_map(map_cpy);
+		exit(1);
+	}
 }
 
 void	launch_fdf(char *map_file)
@@ -38,7 +50,7 @@ void	launch_fdf(char *map_file)
 		free(data);
 		exit(1);
 	}
-	init(data);
+	init(data, map_cpy);
 	draw(map_cpy, data);
 	free_map(map_cpy);
 	mlx_key_hook(data->win_ptr, esc_exit, data);
