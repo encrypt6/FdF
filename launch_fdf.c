@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:25:45 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/20 14:57:42 by elsikira         ###   ########.fr       */
+/*   Updated: 2024/08/20 17:59:30 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	init(t_data *data, t_map *map_cpy)
 	if (!data->mlx_ptr)
 	{
 		ft_dprintf(STDERR_FILENO, "Error: mlx_init() failed\n");
+		free(data);
 		free_map(map_cpy);
+		get_next_line(-42);
 		exit(1);
 	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr,
@@ -26,7 +28,9 @@ void	init(t_data *data, t_map *map_cpy)
 	if (!data->win_ptr)
 	{
 		ft_dprintf(STDERR_FILENO, "Error: mlx_new_window() failed\n");
+		free(data);
 		free_map(map_cpy);
+		get_next_line(-42);
 		exit(1);
 	}
 }
