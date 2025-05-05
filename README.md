@@ -1,9 +1,38 @@
-To execute the program: 
+# FdF - Wireframe Renderer
 
-git glone the repo.
+A 3D wireframe viewer project that reads a map file and renders a 3D representation in a 2D window using isometric projection.
 
-then do this command:
+> ⚠️ This project is **Linux-only**.
 
-make; ./fdf maps/test_maps/42.fdf
+## 🛠️ Getting Started
 
-/!\ The project works on Linux /!\
+### Prerequisites
+
+- Make sure you are using a **Linux** environment.
+- You need to have the following installed:
+  - `make`
+  - `gcc` or any standard C compiler
+  - any required dependencies for the graphics library used (e.g., MiniLibX)
+
+### Installation
+
+Clone the repository:
+
+```
+git clone https://github.com/encrypt6/FdF.git
+cd FdF
+```
+
+### Execution
+```
+./fdf maps/test_maps/42.fdf
+```
+
+Other maps than 42.fdf are possible
+
+
+
+
+
+
+
