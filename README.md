@@ -30,6 +30,7 @@ cd FdF
 
 Other maps than 42.fdf are possible
 
+<img width="634" alt="42" src="https://github.com/user-attachments/assets/49f7b82b-339a-492a-9bcf-94538f8e0da6" />
 
 
 
