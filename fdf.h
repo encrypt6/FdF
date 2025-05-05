@@ -6,7 +6,7 @@
 /*   By: elsikira <elsikira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:56:11 by elsikira          #+#    #+#             */
-/*   Updated: 2024/08/13 00:17:20 by elsikira         ###   ########.fr       */
+/*   Updated: 2025/05/05 09:29:31 by elsikira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 650
 # define ESC_KEY 65307
-# define SCALE_X 3.5
-# define SCALE_Y 3.5
+# define SCALE_X 1.5
+# define SCALE_Y 1.5
 
 # include "libft/libft.h"
 # include <math.h>
