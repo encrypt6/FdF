@@ -2,7 +2,7 @@
 
 A 3D wireframe viewer project that reads a map file and renders a 3D representation in a 2D window using isometric projection. I use Xiaolin Wu's algorithm.
 
-> ⚠️ This project is **Linux-only**. Make sure to install it on the right OS or on a VM.
+> ⚠️ This project is **Linux-only**. Make sure to install it in the right OS or in a VM.
 
 ## 🛠️ Getting Started
 
