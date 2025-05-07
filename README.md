@@ -32,7 +32,6 @@ Other maps than 42.fdf are possible
 
 <img width="634" alt="42" src="https://github.com/user-attachments/assets/49f7b82b-339a-492a-9bcf-94538f8e0da6" />
 
-<img width="1092" alt="fdf" src="https://github.com/user-attachments/assets/c094c7f0-791b-4882-884c-1bf01fb570dc" />
 
 <img width="1066" alt="fdf2" src="https://github.com/user-attachments/assets/f2bbd53f-1cda-445a-9e21-4c4ca04415f4" />
 
